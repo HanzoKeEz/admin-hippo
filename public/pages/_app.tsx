@@ -6,7 +6,6 @@ import { Montserrat } from 'next/font/google'
 import { ReactElement, ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { AnimatePresence } from 'framer-motion'
-
 const montserrat = Montserrat({
 	weight: ['400', '700', '600', '500'],
 	style: ['normal'],
@@ -26,7 +25,6 @@ export default function App({
 	router,
 }: AppPropsWithLayout) {
 	const getLayout = Component.getLayout ?? ((page: JSX.Element) => page)
-
 	return (
 		<AnimatePresence mode='wait'>
 			<div className={montserrat.className}>

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 
 type Props = {
@@ -19,13 +18,7 @@ export default function PreviewImage({
 	return (
 		<figure className='relative overflow-hidden rounded-md h-[300px] w-[300px]'>
 			{/* Image */}
-			<Image
-				height={100}
-				width={100}
-				src={src}
-				alt={alt}
-				className='h-full w-full object-cover'
-			/>
+			<img src={src} alt={alt} className='h-full w-full object-cover' />
 			{/* Delete icon */}
 			{onDelete !== undefined && index !== undefined && (
 				<button

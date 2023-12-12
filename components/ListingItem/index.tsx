@@ -49,7 +49,7 @@ function ListingItem({
 					{location}
 				</p>
 				<h3 className='font-semibold m-0 text-xl text-black'>{name}</h3>
-				<p className='flex flex-col mt-2 font-semibold text-lg text-primary-indigo mb-2'>
+				<p className='flex flex-col mt-2 font-semibold text-lg text-primary-purple mb-2'>
 					{offer ? (
 						<span className='text-[0.7rem] line-through text-black opacity-80 '>
 							${regularPrice + (type === 'rent' ? ' / Month' : '')}

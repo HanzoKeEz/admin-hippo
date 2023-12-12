@@ -60,14 +60,14 @@ function ExplorePage({ listings }: { listings: ExploreData[] }) {
 	return (
 		<>
 			<Head>
-				<title> Explore - our Large Collection of Homes</title>
+				<title> Explore - our available services</title>
 			</Head>
 			<section className='px-12 md:px-8 lg:px-2 min-h-screen pt-8 pb-6 space-y-12 bg-primary-grey'>
 				<div className='flex items-center lg:w-[80%] mx-auto  justify-between'>
 					<h1>Explore</h1>
 					<button
 						type='button'
-						className='h-[45px] hover:opacity-50 w-[45px]  flex items-center justify-center rounded-[50%]  bg-primary-indigo shadow-[0px_5px_10px_rgba(0,255,0,0.32)]'
+						className='h-[45px] hover:opacity-50 w-[45px]  flex items-center justify-center rounded-[50%]  bg-primary-indigo shadow-[0px_5px_10px_rgba(20,15,100,0.32)]'
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
@@ -80,45 +80,7 @@ function ExplorePage({ listings }: { listings: ExploreData[] }) {
 						</svg>
 					</button>
 				</div>
-				<div>
-					<h2 className='lg:w-[80%] mx-auto mb-5 opacity-80'>Recomended</h2>
-					{listings.length !== 0 ? (
-						<Swiper
-							modules={[Navigation, Pagination, Scrollbar, A11y]}
-							spaceBetween={0}
-							slidesPerView={1}
-							autoplay
-							className='h-[300px] overflow-hidden relative rounded-3xl lg:w-[80%] mx-auto '
-							pagination={{ clickable: true }}
-							scrollbar={{ draggable: true }}
-						>
-							{listings.map((listing, index) => (
-								<SwiperSlide key={`${listing.id}-${index}`}>
-									<Link href={`/category/${listing.data.type}/${listing.id}`}>
-										<img
-											src={listing.data.imgUrls[0]}
-											alt={listing.data.name}
-											className='object-cover bg-no-repeat h-full bg-center w-full'
-										/>
-										<div className='absolute bottom-[10%] left-[5%] p-3 rounded-lg text-primary-white bg-[rgba(0,0,0,0.5)] z-[30]'>
-											<p className='text-2xl mb-2 font-semibold'>
-												{listing.data.name}
-											</p>
-											<p className='py-1 px-2  bg-primary-white rounded-[2rem] text-primary-black font-semibold inline mr-2'>
-												$
-												{listing.data.discountedPrice ??
-													listing.data.regularPrice}{' '}
-												{listing.data.type === 'rent' ? '/ month' : ''}
-											</p>
-										</div>
-									</Link>
-								</SwiperSlide>
-							))}
-						</Swiper>
-					) : (
-						<p>There are currently no recomendable listings.</p>
-					)}
-				</div>
+
 				<div>
 					<h3 className='lg:w-[80%] mx-auto mb-5 opacity-80'>Categories</h3>
 					<div className='flex items-center space-x-[5%]  lg:space-x-[10%] lg:w-[80%] mx-auto '>

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
@@ -18,10 +17,8 @@ function Slider({ images }: props) {
 		>
 			{images.map((image, index) => (
 				<SwiperSlide key={`${image}-${index}`}>
-					<Image
+					<img
 						src={image}
-						height={100}
-						width={100}
 						alt={'slider image'}
 						className='object-contain bg-center'
 					/>

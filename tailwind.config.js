@@ -9,7 +9,12 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'primary-indigo': '#4f46e5',
+				'primary-purple': '#00cc66',
+				'primary-blue': '#00bfff',
+				'primary-red': '#ff0000',
+				'primary-yellow': '#ffff00',
+				'primary-orange': '#ffa500',
+				'primary-purple': '#AF9BB6',
 				'primary-black': '#323232',
 				'primary-grey': '#f2f4f8',
 				'primary-white': '#fff',

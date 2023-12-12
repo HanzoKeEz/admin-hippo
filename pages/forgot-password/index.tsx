@@ -70,7 +70,7 @@ function ForgotPasswordPage() {
 				</div>
 				<Link
 					href='/signin'
-					className='text-right font-semibold text-primary-indigo w-full'
+					className='text-right font-semibold text-primary-purple w-full'
 				>
 					Sign in
 				</Link>
@@ -78,7 +78,7 @@ function ForgotPasswordPage() {
 					<h4 className='text-2xl font-medium text-gray-600'>
 						Send Reset Email
 					</h4>
-					<button className='relative h-[50px] w-[50px] flex hover:opacity-50 duration-200 ease-in items-center justify-center rounded-full shadow-lg bg-primary-indigo p-2'>
+					<button className='relative h-[50px] w-[50px] flex hover:opacity-50 duration-200 ease-in items-center justify-center rounded-full shadow-lg bg-primary-purple p-2'>
 						<Image
 							src='/svg/keyboardArrowRightIcon.svg'
 							alt='chevron right icon'

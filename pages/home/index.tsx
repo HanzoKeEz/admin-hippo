@@ -14,7 +14,7 @@ function HomePage() {
 	return (
 		<>
 			<Head>
-				<title>House Marketplace</title>
+				<title>Hippo Docs</title>
 			</Head>
 			<Nav />
 			<Hero />
@@ -24,18 +24,8 @@ function HomePage() {
 				{/* Testimonals */}
 				<Testimonals testimonials={testimonials} />
 			</main>
-			<footer className='bg-primary-indigo py-2 px-3 text-primary-white text-center'>
-				<p>
-					Created by{' '}
-					<a
-						href='https://github.com/Nathan-Somto'
-						className=' font-semibold'
-						target='_blank'
-					>
-						Nathan Somto
-					</a>{' '}
-					{new Date().getFullYear()}
-				</p>
+			<footer className='bg-primary-purple py-2 px-3 text-primary-white text-center'>
+				<p>{new Date().getFullYear()}</p>
 			</footer>
 		</>
 	)

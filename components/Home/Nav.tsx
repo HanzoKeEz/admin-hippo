@@ -1,5 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { LiaHippoSolid } from 'react-icons/lia'
+
 import { useState } from 'react'
 function Nav() {
 	const [showMobileNav, setShowMobileNav] = useState(false)
@@ -8,36 +10,26 @@ function Nav() {
 			<div className='flex w-full justify-between px-6  items-center  py-6'>
 				<p>
 					<span>
-						<svg
-							className='inline'
-							xmlns='http://www.w3.org/2000/svg'
-							height='20px'
-							viewBox='0 0 24 24'
-							width='20px'
-							fill={`rgb(50,50,50)`}
-						>
-							<path d='M0 0h24v24H0z' fill='none' />
-							<path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' />
-						</svg>
+						<LiaHippoSolid />
 					</span>{' '}
-					<span>Marketplace</span>
+					<span>Hippo Docs</span>
 				</p>
 				<ul className='lg:flex hidden space-x-8  items-center '>
-					<li className='border-b border-b-transparent pb-2 transition-all duration-250 ease-in hover:border-b-primary-indigo border-solid '>
+					<li className='border-b border-b-transparent pb-2 transition-all duration-250 ease-in hover:border-b-primary-purple border-solid '>
 						<Link href='#Services'>Our Services</Link>
 					</li>
-					<li className='border-b border-b-transparent pb-2 transition-all duration-250 ease-in hover:border-b-primary-indigo border-solid '>
+					<li className='border-b border-b-transparent pb-2 transition-all duration-250 ease-in hover:border-b-primary-purple border-solid '>
 						<Link href='#Testimonals'>Testimonals</Link>
 					</li>
 					<li>
 						<Link
 							href={'/signin'}
-							className='py-[0.55rem] px-8 bg-primary-indigo text-primary-white font-medium rounded-md'
+							className='py-[0.55rem] px-8 bg-primary-purple text-primary-white font-medium rounded-md'
 						>
 							Login
 						</Link>
 					</li>
-					<li className='border-b border-b-transparent pb-2 transition-all duration-250 ease-in hover:border-b-primary-indigo border-solid '>
+					<li className='border-b border-b-transparent pb-2 transition-all duration-250 ease-in hover:border-b-primary-purple border-solid '>
 						<Link href={'/signup'} className='font-medium'>
 							Register
 						</Link>
@@ -66,7 +58,7 @@ function Nav() {
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
 							transition={{ duration: 0.85, delay: 0.55 }}
-							className='flex relative flex-col  text-lg py-8 px-12 rounded-[25px] text-center text-primary-white bg-primary-indigo h-[250px] w-[220px]'
+							className='flex relative flex-col  text-lg py-8 px-12 rounded-[25px] text-center text-primary-white bg-primary-purple h-[250px] w-[220px]'
 						>
 							<button
 								onClick={() => setShowMobileNav(false)}

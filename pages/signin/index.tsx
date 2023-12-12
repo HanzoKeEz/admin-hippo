@@ -10,6 +10,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { toast } from 'react-toastify'
+import Hippo from '../../public/purphip.png'
 
 function SigninPage() {
 	const router = useRouter()
@@ -27,6 +28,7 @@ function SigninPage() {
 			[name]: value,
 		}))
 	}
+
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		const { email, password } = formData
@@ -44,6 +46,7 @@ function SigninPage() {
 			setLoading(false)
 		}
 	}
+
 	return (
 		<>
 			<Head>
@@ -61,7 +64,7 @@ function SigninPage() {
 					initial={{ x: '-100%' }}
 					animate={{ x: '0%' }}
 					transition={{ duration: 1.2, delay: 0.3 }}
-					className='bg-primary-indigo rounded-tr-[10%] rounded-br-[10%] lg:flex items-center hidden  justify-center relative min-h-screen'
+					className='bg-primary-purple rounded-tr-[10%] rounded-br-[10%] lg:flex items-center hidden  justify-center relative min-h-screen'
 				>
 					<motion.div
 						initial={{ scale: 0 }}
@@ -69,7 +72,7 @@ function SigninPage() {
 						transition={{ duration: 1.2, ease: 'easeIn', delay: 1 }}
 					>
 						<Image
-							src={'/signin-home.png'}
+							src={Hippo}
 							alt={'sign in home'}
 							width={400}
 							height={400}
@@ -159,13 +162,13 @@ function SigninPage() {
 					</div>
 					<Link
 						href={'/forgot-password'}
-						className='text-primary-indigo text-right text-sm font-medium w-[80%]'
+						className='text-primary-purple text-right text-sm font-medium w-[80%]'
 					>
 						Forgot Password?
 					</Link>
 					<div className='flex justify-between w-[80%] items-center'>
 						<h4 className='text-2xl font-medium text-gray-600'>Sign In</h4>
-						<button className='relative h-[50px] w-[50px] flex hover:opacity-50 duration-200 ease-in items-center justify-center rounded-full shadow-lg bg-primary-indigo p-2'>
+						<button className='relative h-[50px] w-[50px] flex hover:opacity-50 duration-200 ease-in items-center justify-center rounded-full shadow-lg bg-primary-purple p-2'>
 							<Image
 								src='/svg/keyboardArrowRightIcon.svg'
 								alt='chevron right icon'
@@ -177,7 +180,7 @@ function SigninPage() {
 					<GoogleAuth pathname='in' />
 					<p className='text-gray-600'>
 						{"Don't"} have an Account{' '}
-						<Link href='/signup' className='text-primary-indigo font-semibold'>
+						<Link href='/signup' className='text-primary-purple font-semibold'>
 							Sign Up
 						</Link>
 					</p>

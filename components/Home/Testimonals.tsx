@@ -53,9 +53,9 @@ function Testimonals({ testimonials }: props) {
 												height={60}
 												alt={`${testimonal.author}-avatar`}
 												src={`/avatar-${index + 1}.jpg`}
-												className='rounded-[50%] hover:scale-110 h-[60px] w-[60px] object-cover border-primary-indigo border-solid border'
+												className='rounded-[50%] hover:scale-110 h-[60px] w-[60px] object-cover border-primary-purple border-solid border'
 											/>
-											<p>{testimonal.author}</p>
+											<small>{testimonal.author}</small>
 										</div>
 									</motion.div>
 								)
@@ -64,9 +64,9 @@ function Testimonals({ testimonials }: props) {
 					<div className='flex space-x-3 items-center justify-center '>
 						{testimonials.map((_, index) => (
 							<button
-								className={`border-primary-indigo transition-all ease-in duration-250 border-solid border shadow-[0_0_10px_#00cc66] ${
+								className={`border-primary-purple transition-all ease-in duration-250 border-solid border shadow-[0_0_10px_#00cc66] ${
 									currentTestimonal === index
-										? 'bg-primary-indigo'
+										? 'bg-primary-purple'
 										: 'bg-transparent'
 								} h-[20px] w-[20px] rounded-[50%]`}
 								key={index}

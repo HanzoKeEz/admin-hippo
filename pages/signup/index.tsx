@@ -36,17 +36,17 @@ function SignupPage() {
 	const [togglePassword2, setTogglePassword2] = useState(false)
 	async function onSubmit(data: signupType) {
 		setLoading(true)
-		let { firstName, password, email } = data
-		firstName = capitalize(firstName)
+		let { name, password, email } = data
+		name = capitalize(name)
 		try {
 			// create the user in firebase.
 			const cred = await createUserWithEmailAndPassword(auth, email, password)
 			// update the users profile in firebase.
 			const updated = await updateProfile(cred.user, {
-				displayName: firstName,
+				displayName: name,
 			})
 			await setDoc(doc(db, 'users', cred.user.uid), {
-				firstName,
+				name,
 				email,
 				timestamp: serverTimestamp(),
 			})
@@ -66,14 +66,14 @@ function SignupPage() {
 	return (
 		<>
 			<Head>
-				<title>Join - The fam Today</title>
+				<title>Join - The family Today</title>
 			</Head>
 			<main className='bg-primary-grey grid grid-cols-1 min-h-screen lg:grid-cols-2  lg:gap-[10%]'>
 				<motion.aside
 					initial={{ x: '-100%' }}
 					animate={{ x: '0%' }}
 					transition={{ duration: 1.2, delay: 0.3 }}
-					className='bg-primary-indigo rounded-tr-[10%] rounded-br-[10%] lg:flex items-center hidden  justify-center relative min-h-screen'
+					className='bg-primary-purple rounded-tr-[10%] rounded-br-[10%] lg:flex items-center hidden  justify-center relative min-h-screen'
 				>
 					<motion.div
 						initial={{ scale: 0 }}
@@ -103,19 +103,19 @@ function SignupPage() {
 							animate={{ y: 0, opacity: 1 }}
 							exit={{ y: 80, opacity: 0 }}
 							transition={{ duration: 0.8, delay: 3 }}
-							className='text-primary-indigo'
+							className='text-primary-purple'
 						>
 							Today
 						</motion.span>
 					</h1>
 					<div className='w-full'>
 						<label
-							htmlFor='firstName'
+							htmlFor='name'
 							className={`font-medium text-gray-600 ${
-								errors.firstName ? 'text-red-500' : ''
+								errors.name ? 'text-red-500' : ''
 							}`}
 						>
-							First Name
+							Name
 						</label>
 						<div className='relative w-[80%] max-w-[500px]'>
 							<Image
@@ -127,15 +127,13 @@ function SignupPage() {
 							/>
 							<input
 								type='text'
-								id='firstName'
-								{...register('firstName')}
-								placeholder='Enter First Name'
-								className={`input-box ${
-									errors.firstName ? 'input-invalid' : ''
-								}`}
+								id='name'
+								{...register('name')}
+								placeholder='Enter  Name'
+								className={`input-box ${errors.name ? 'input-invalid' : ''}`}
 							/>
 						</div>
-						<small className='input-error'>{errors?.firstName?.message}</small>
+						<small className='input-error'>{errors?.name?.message}</small>
 					</div>
 					<div className='w-full'>
 						<label
@@ -264,7 +262,7 @@ function SignupPage() {
 					</div>
 					<div className='flex justify-between w-[80%] items-center'>
 						<h4 className='text-2xl font-medium text-gray-600'>Sign up</h4>
-						<button className='relative h-[50px] w-[50px] flex hover:opacity-50 duration-200 ease-in items-center justify-center rounded-full shadow-lg bg-primary-indigo p-2'>
+						<button className='relative h-[50px] w-[50px] flex hover:opacity-50 duration-200 ease-in items-center justify-center rounded-full shadow-lg bg-primary-purple p-2'>
 							<Image
 								src='/svg/keyboardArrowRightIcon.svg'
 								alt='chevron right icon'
@@ -276,7 +274,7 @@ function SignupPage() {
 					<GoogleAuth pathname={'up'} />
 					<p className='text-gray-600'>
 						Have an Account?{' '}
-						<Link href='/signin' className='text-primary-indigo font-semibold'>
+						<Link href='/signin' className='text-primary-purple font-semibold'>
 							Sign In
 						</Link>
 					</p>

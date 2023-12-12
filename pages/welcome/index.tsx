@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-
 function WelcomePage() {
 	const user = useAuthStore((state) => state.user)
 	const router = useRouter()
@@ -12,8 +11,7 @@ function WelcomePage() {
 		setTimeout(() => {
 			router.push('/explore')
 		}, 3500)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [router])
 	return (
 		<>
 			<Head>
@@ -25,7 +23,7 @@ function WelcomePage() {
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
 				transition={{ duration: 0.55 }}
-				className='bg-primary-indigo h-screen grid place-items-center text-primary-white'
+				className='bg-primary-purple h-screen grid place-items-center text-primary-purple'
 			>
 				<div>
 					<div className='h-[100px] overflow-hidden'>
@@ -53,8 +51,8 @@ function WelcomePage() {
 					>
 						<Image
 							src={'/hippopurple.png'}
-							width={500}
-							height={500}
+							width={600}
+							height={600}
 							className='max-w-[500px] h-[300px] object-contain w-[80%]'
 							alt='girl welcome image'
 						/>

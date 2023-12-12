@@ -1,35 +1,34 @@
 {
-    "testimonials": [
-      {
-        "quote": "Thanks to House Marketplace, I found my dream home with ease. The platform's extensive property listings and user-friendly interface made it simple to connect with potential buyers. I had a smooth transaction from start to finish, and I'm thrilled with my new home!",
-        "author": "Ava Johnson"
-      },
-      {
-        "quote": "House Marketplace made selling my house a breeze. The platform allowed me to connect with interested buyers effortlessly. The whole process was seamless, and I received great offers quickly. I highly recommend House Marketplace for its efficient and smooth transaction experience.",
-        "author": "Ethan Miller"
-      },
-      {
-        "quote": "House Marketplace helped me find the perfect rental home. The platform's user-friendly features and wide selection of properties made it easy to connect with potential landlords. The transaction went smoothly, and I'm enjoying my new place. Thank you, House Marketplace!",
-        "author": "Sophia Patel"
-      },
-      {
-        "quote": "House Marketplace has been a game-changer for my real estate investments. The platform's advanced search filters and reliable property listings connected me with serious buyers quickly. Every transaction I've had through House Marketplace has been smooth, efficient, and profitable. I couldn't ask for more!",
-        "author": "Noah Thompson"
-      }
-    ],
-    "services": [
-      {
-        "heading": "Sell Your Home",
-        "paragraph": "Sell your home with ease. Our platform connects you with potential buyers, ensuring a smooth and profitable transaction."
-      },
-      {
-        "heading": "Buy Your Home",
-        "paragraph": "Find your dream home effortlessly. Explore our vast selection of properties and connect with sellers to make it yours."
-      },
-      {
-        "heading": "Rent Your Home",
-        "paragraph": "Discover the perfect rental home. Browse through our extensive listings and connect with landlords for a seamless renting experience."
-      }
-    ]
-  }
-  
+	"testimonials": [
+		{
+			"quote": "I can't express how satisfied I am with Hippo Docs' services. As a small business owner, dealing with legal paperwork has always been a daunting task. But thanks to Hippo Docs, it's become a breeze. Their team is not only professional but also incredibly efficient. They helped me prepare and record all the necessary legal documents for my business expansion, and everything was done accurately and on time. I highly recommend Hippo Docs to anyone in need of legal prepping and recording services. They are a game-changer!",
+			"author": "Thai Ngo"
+		},
+		{
+			"quote": "Hippo Docs is simply exceptional. I had been procrastinating on updating my will and other legal documents for years, but finally decided to take action. From the moment I contacted them, I was impressed by their responsiveness and commitment to helping me. The team at Hippo Docs walked me through the entire process, patiently answering all my questions and concerns. They provided me with expert guidance, and the final documents were meticulously prepared. It's a great relief knowing that my family's future is secure, thanks to Hippo Docs. I wholeheartedly endorse their services to anyone in need of legal prepping and recording.",
+			"author": "Hiep Tran"
+		},
+		{
+			"quote": "Hippo Docs has been a lifesaver for me. When I needed to draft and record some complex legal agreements for a real estate transaction, I was overwhelmed. That's when I reached out to Hippo Docs, and I'm so glad I did. Their team of experts guided me through the entire process, ensuring that every document was prepared correctly and filed without any hiccups. Their attention to detail and dedication to customer satisfaction are commendable. Hippo Docs is now my go-to choice for all legal prepping and recording needs.",
+			"author": "Sophia Patel"
+		},
+		{
+			"quote": "I recently used Hippo Docs for my estate planning, and I couldn't be happier with the results. The team at Hippo Docs made the process so straightforward and stress-free. They took the time to understand my specific needs and crafted legal documents that perfectly suited my situation. Their expertise and professionalism gave me peace of mind knowing that my affairs are in order. I'm grateful for their exceptional service and would recommend Hippo Docs to anyone seeking reliable legal prepping and recording assistance.",
+			"author": "Noah Bui"
+		}
+	],
+	"services": [
+		{
+			"heading": "Settle your estate",
+			"paragraph": "Protect your estate and settle your assets with ease. Our platform connects you with professionals, ensuring a smooth and profitable transaction."
+		},
+		{
+			"heading": "Sign your mortgage",
+			"paragraph": "Sign your dream home effortlessly. Make sure you understand what you are signing before its final."
+		},
+		{
+			"heading": "Record any Legal Document",
+			"paragraph": "Discover the ease of recording legal documents without breaking a sweat."
+		}
+	]
+}

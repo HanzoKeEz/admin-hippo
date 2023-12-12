@@ -1,7 +1,7 @@
 function Spinner() {
 	return (
 		<div className='fixed top-0 right-0 bottom-0 left-0 z-[9000] backdrop-blur-lg  flex justify-center items-center'>
-			<div className='w-16 h-16 border-8 rounded-[50%] animate-spin border-solid border-t-primary-indigo border-b-primary-indigo  border-l-transparent border-r-transparent'></div>
+			<div className='w-16 h-16 border-8 rounded-[50%] animate-spin border-solid border-t-primary-purple border-b-primary-purple  border-l-transparent border-r-transparent'></div>
 		</div>
 	)
 }

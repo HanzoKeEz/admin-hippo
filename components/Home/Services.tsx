@@ -35,7 +35,7 @@ function Services({ services }: props) {
 							{index === 0 && (
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
-									fill='#00cc66'
+									fill='#c4b5fd'
 									height='100px'
 									width='350px'
 									version='1.1'
@@ -52,7 +52,7 @@ function Services({ services }: props) {
 							{index === 1 && (
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
-									fill='#00cc66'
+									fill='#c4b5fd'
 									height='100px'
 									width='350px'
 									version='1.1'
@@ -75,7 +75,7 @@ function Services({ services }: props) {
 							{index === 2 && (
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
-									fill='#00cc66'
+									fill='#c4b5fd'
 									version='1.1'
 									id='Layer_1'
 									width='350px'
@@ -93,9 +93,9 @@ function Services({ services }: props) {
 							)}
 						</div>
 						<div className='space-y-4 mt-[50px]'>
-							<h3 className='hover:text-primary-indigo'>{service.heading}</h3>
+							<h3 className='hover:text-primary-purple'>{service.heading}</h3>
 							<p className='opacity-80 text-slate-500'>{service.paragraph}</p>
-							<button className='bg-primary-indigo rounded-md hover:opacity-50 text-primary-white py-2 px-6'>
+							<button className='bg-primary-purple rounded-md hover:opacity-50 text-primary-white py-2 px-6'>
 								find out more
 							</button>
 						</div>

@@ -2,12 +2,13 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 const firebaseConfig = {
-	apiKey: 'AIzaSyDTjXf_LnJQGMxO_NI6bKTCe0_0TxpWtpw',
-	authDomain: 'okidoki-market.firebaseapp.com',
-	projectId: 'okidoki-market',
-	storageBucket: 'okidoki-market.appspot.com',
-	messagingSenderId: '77584032763',
-	appId: '1:77584032763:web:e94abccdc241de8b04a15e',
+	apiKey: 'AIzaSyB5KG7Xu37uKN2AFLRFC2VIRkPSktyOILM',
+	authDomain: 'admin-hippo.firebaseapp.com',
+	projectId: 'admin-hippo',
+	storageBucket: 'admin-hippo.appspot.com',
+	messagingSenderId: '246397704239',
+	appId: '1:246397704239:web:75155144368dc5c4e40eda',
+	measurementId: 'G-CRV6PYT6CR',
 }
 
 const app = initializeApp(firebaseConfig)

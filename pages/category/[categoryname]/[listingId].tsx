@@ -120,7 +120,7 @@ function ListingPage({ listing }: { listing: listingData }) {
 						{listingData.location}
 					</p>
 					<div className=' mb-6'>
-						<p className='py-1 px-2 shadow-[0px_2px_5px_rgb(0,204,102)] bg-primary-indigo rounded-[2rem] text-primary-white font-semibold inline mr-2'>
+						<p className='py-1 px-2 shadow-[0px_2px_5px_rgb(0,204,102)] bg-primary-purple rounded-[2rem] text-primary-white font-semibold inline mr-2'>
 							for {listingData.type}
 						</p>
 						{listingData.discountedPrice !== undefined && (

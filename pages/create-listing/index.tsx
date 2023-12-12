@@ -60,7 +60,6 @@ function CreateListingPage(): JSX.Element {
 		} else {
 			router.push('/signin')
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
 	// form submission handler.
@@ -478,7 +477,7 @@ function CreateListingPage(): JSX.Element {
 						>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
-								fill='#00cc66'
+								fill='#a78bfa'
 								height='50px'
 								width='50px'
 								version='1.1'
