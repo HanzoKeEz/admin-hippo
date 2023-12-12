@@ -1,27 +1,8 @@
 import React, { useState } from 'react'
-import { PlusOutlined } from '@ant-design/icons'
-import {
-	Button,
-	Cascader,
-	Checkbox,
-	Col,
-	ColorPicker,
-	DatePicker,
-	Form,
-	Input,
-	InputNumber,
-	Radio,
-	Row,
-	Select,
-	Slider,
-	Switch,
-	TreeSelect,
-	Upload,
-	message,
-} from 'antd'
-import { useDispatch } from 'react-redux'
+import { Col, Form, Input, message } from 'antd'
+
 import { useRouter } from 'next/router'
-import { ShowLoader } from '@/redux/loaderSlice'
+
 import {
 	AddCustomer,
 	UpdateCustomer,
@@ -48,7 +29,7 @@ const AddCustomerForm: React.FC = () => {
 	const [form] = Form.useForm()
 	const [alreadyApproved, setAlreadyApproved] = useState(false)
 	const [alreadyApplied, setAlreadyApplied] = useState(false)
-	const dispatch = useDispatch()
+	const [loading, setLoading] = useState(false)
 	const router = useRouter()
 
 	const userItem = localStorage.getItem('user')
@@ -59,7 +40,7 @@ const AddCustomerForm: React.FC = () => {
 
 	const onFinish = async (values: any) => {
 		try {
-			dispatch(ShowLoader(true))
+			setLoading(true)
 			const payload = {
 				...values,
 				status: 'pending',
@@ -79,9 +60,9 @@ const AddCustomerForm: React.FC = () => {
 			} else {
 				message.error(response)
 			}
-			dispatch(ShowLoader(false))
+			setLoading(false)
 		} catch (error) {
-			dispatch(ShowLoader(false))
+			setLoading(false)
 			message.error('error')
 		}
 	}

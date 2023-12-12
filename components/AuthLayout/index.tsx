@@ -5,6 +5,7 @@ import useAuthStore from '@/store/useAuthStore'
 import { auth } from '@/firebase/firebase.config'
 import { useRouter } from 'next/router'
 import Spinner from '../Spinner'
+import Header from '../Header'
 
 function AuthLayout({ children }: { children: ReactNode }) {
 	const user = useAuthStore((state) => state.user)
@@ -32,8 +33,9 @@ function AuthLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<>
+			<Header />
 			<Navbar />
-			<main className='md:max-w-[calc(100%-250px)] md:ml-auto md:mb-0 mb-[110px] w-full'>
+			<main className='md:max-w-[calc(100%-225px)] md:ml-auto md:mb-0 mb-[110px] w-full'>
 				{children}
 			</main>
 		</>

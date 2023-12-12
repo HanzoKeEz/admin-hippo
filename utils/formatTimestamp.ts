@@ -1,11 +1,11 @@
-import { IListing } from '@/types'
+import { ICustomer } from '@/types'
 import { Timestamp } from 'firebase/firestore'
 /**
  *
  * @param data
  * @returns string
  */
-function formatTimestamp(data: IListing) {
+function formatTimestamp(data: ICustomer) {
 	let timestampString: string
 
 	if (typeof data.timestamp === 'string') {

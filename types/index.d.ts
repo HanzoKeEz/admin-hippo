@@ -16,32 +16,18 @@ interface IUser {
 	email: string
 	timestamp: Timestamp | string | FieldValue
 }
-interface IListing {
-	name: string
-	type: category
-	userRef: string
-	bedrooms: number
-	bathrooms: number
-	parking: boolean
-	furnished: boolean
-	offer: boolean
-	regularPrice: number
-	discountedPrice?: number
-	location: string
-	geoLocation: geoLocation
-	imgUrls: string[]
-	timestamp: Timestamp | string | FieldValue
-	city?: string
-}
 
 interface ICustomer {
-	id: string
 	firstName: string
 	middleName: string
 	lastName: string
 	email: string
+	phone: string
+	location: string
 	role: string
+	city?: string
+	userRef: string
 	timestamp: Timestamp | string | FieldValue
 }
 
-export { IListing, category, geoLocation, geoData, IUser, ICustomer }
+export { category, geoLocation, geoData, IUser, ICustomer }

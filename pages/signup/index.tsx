@@ -53,7 +53,7 @@ function SignupPage() {
 			// login in our user in our zustand state.
 			login(cred.user)
 
-			// replace the existing route to that of the explore page.
+			// replace the existing route to that of the dashboard page.
 			router.replace('/welcome')
 		} catch (err) {
 			let message = 'there was an error while submitting the form.'

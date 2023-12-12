@@ -1,5 +1,5 @@
 import { db } from '@/firebase/firebase.config'
-import { IListing } from '@/types'
+import { ICustomer } from '@/types'
 import formatTimestamp from '@/utils/formatTimestamp'
 import {
 	DocumentData,
@@ -18,13 +18,13 @@ import { toast } from 'react-toastify'
 
 type LoadData = {
 	id: string
-	data: IListing
+	data: ICustomer
 }
 type field = 'offer' | 'rent' | 'sale'
 type props = {
 	lastItem: QueryDocumentSnapshot<DocumentData> | string
-	setNewListings: Dispatch<SetStateAction<LoadData[]>>
-	setLastListing: Dispatch<
+	setNewCustomers: Dispatch<SetStateAction<LoadData[]>>
+	setLastCustomer: Dispatch<
 		SetStateAction<QueryDocumentSnapshot<DocumentData> | null>
 	>
 	field: field
@@ -32,15 +32,15 @@ type props = {
 
 function LoadMore({
 	lastItem,
-	setNewListings,
+	setNewCustomers,
 	field,
-	setLastListing,
+	setLastCustomer,
 }: props): JSX.Element {
 	const [loading, setLoading] = useState(false)
 	async function handleLoadMore() {
 		setLoading(true)
 		try {
-			const docRef = collection(db, 'listings')
+			const docRef = collection(db, 'customers')
 			let whereField = field === 'offer' ? field : 'type'
 			let clientField =
 				field === 'offer' ? true : field === 'rent' ? field : 'sale'
@@ -54,24 +54,24 @@ function LoadMore({
 			)
 			// fetch data from firebase.
 			const docSnap = await getDocs(q)
-			const listings: LoadData[] = []
+			const customers: LoadData[] = []
 			const lastVisible = docSnap.docs[docSnap.docs.length - 1]
-			setLastListing(lastVisible)
+			setLastCustomer(lastVisible)
 			console.log('last lisitng', lastVisible)
 
 			docSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
-				let timestampString: string = formatTimestamp(doc.data() as IListing)
-				listings.push({
+				let timestampString: string = formatTimestamp(doc.data() as ICustomer)
+				customers.push({
 					id: doc.id,
 					data: {
-						...(doc.data() as IListing),
+						...(doc.data() as ICustomer),
 						timestamp: timestampString,
 					},
 				})
 			})
-			setNewListings((prevState) => [...prevState, ...listings])
+			setNewCustomers((prevState) => [...prevState, ...customers])
 		} catch (err) {
-			toast.error('Could not fetch more listings.')
+			toast.error('Could not fetch more customers.')
 		} finally {
 			setLoading(false)
 		}
@@ -86,15 +86,7 @@ function LoadMore({
 			{!loading ? (
 				<span>Load More</span>
 			) : (
-				<span
-					className='h-6
-         w-6
-         border-t-transparent
-         block border-solid
-         border rounded-[50%]
-          border-primary-white
-           animate-spin'
-				></span>
+				<span className='h-6 w-6 border-t-transparent block border-solid border rounded-[50%] border-primary-white animate-spin'></span>
 			)}
 		</button>
 	)

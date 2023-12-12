@@ -1,9 +1,9 @@
 import AuthLayout from '@/components/AuthLayout'
-import ListingItem from '@/components/ListingItem'
+import CustomerItem from '@/components/CustomerItem'
 import LoadMore from '@/components/LoadMore'
 import Spinner from '@/components/Spinner'
 import { db } from '@/firebase/firebase.config'
-import { IListing, category } from '@/types'
+import { ICustomer, category } from '@/types'
 import formatTimestamp from '@/utils/formatTimestamp'
 import {
 	DocumentData,
@@ -16,26 +16,25 @@ import {
 	query,
 	where,
 } from 'firebase/firestore'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import Head from 'next/head'
+// import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 type CategoryData = {
 	id: string
-	data: IListing
+	data: ICustomer
 }
 
 function CategoryPage() {
-	const [fetchedListings, setFetchedListings] = useState<CategoryData[]>([])
-	const [lastListing, setLastListing] =
+	const [fetchedCustomers, setFetchedCustomers] = useState<CategoryData[]>([])
+	const [lastCustomer, setLastCustomer] =
 		useState<QueryDocumentSnapshot<DocumentData> | null>(null)
 	const [loading, setLoading] = useState(false)
 	const router = useRouter()
 	useEffect(() => {
-		async function getListings() {
+		async function getCustomers() {
 			setLoading(true)
 			try {
-				const docRef = collection(db, 'listings')
+				const docRef = collection(db, 'customers')
 
 				//firestore query
 				const q = query(
@@ -46,79 +45,79 @@ function CategoryPage() {
 				)
 				// fetch data from firebase.
 				const docSnap = await getDocs(q)
-				const listings: CategoryData[] = []
+				const customers: CategoryData[] = []
 				const lastVisible = docSnap.docs[docSnap.docs.length - 1]
 				docSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
-					let timestampString: string = formatTimestamp(doc.data() as IListing)
-					listings.push({
+					let timestampString: string = formatTimestamp(doc.data() as ICustomer)
+					customers.push({
 						id: doc.id,
 						data: {
-							...(doc.data() as IListing),
+							...(doc.data() as ICustomer),
 							timestamp: timestampString,
 						},
 					})
 				})
-				setFetchedListings(listings)
-				setLastListing(lastVisible)
+				setFetchedCustomers(customers)
+				setLastCustomer(lastVisible)
 			} catch (err) {
 			} finally {
 				setLoading(false)
 			}
 		}
-		getListings()
+		getCustomers()
 	}, [router.query.categoryname])
 	if (loading) {
 		return <Spinner />
 	}
 	return (
 		<>
-			<Head>
+			{/* <Head>
 				<title>
 					Find Homes for{' '}
 					{router.query.categoryname === 'rent' ? 'Rent' : 'Sale'}
+					{router.query.categoryname === 'rent' ? 'Rent' : 'Sale'}
 				</title>
-			</Head>
+			</Head> */}
 			<section className='min-h-screen px-[5%] py-6 bg-primary-grey space-y-6 text-primary-black  '>
 				<div>
 					<h1>
-						Places for {router.query.categoryname === 'rent' ? 'rent' : 'sale'}
+						Documents for{' '}
+						{/* {router.query.categoryname === 'rent' ? 'rent' : 'sale'} */}
 					</h1>
 				</div>
-				{/* Listing item come here */}
+				{/* Customer item come here */}
 				<div className='flex flex-col gap-5'>
-					{fetchedListings.length ? (
-						fetchedListings.map(({ data, id }) => (
-							<ListingItem
-								bathrooms={data.bathrooms}
-								bedrooms={data.bedrooms}
-								id={id}
-								imgUrls={data.imgUrls}
-								location={data.location}
-								name={data.name}
-								offer={data.offer}
-								regularPrice={data.regularPrice}
-								type={data.type}
-								discountedPrice={data?.discountedPrice}
+					{fetchedCustomers.length ? (
+						fetchedCustomers.map(({ data, id }) => (
+							<CustomerItem
 								key={id}
+								id={id}
+								firstName={data.firstName}
+								middleName={data.middleName}
+								lastName={data.lastName}
+								email={data.email}
+								phone={data.phone}
+								location={data.location}
+								role={data.role}
 							/>
 						))
 					) : (
 						<p>
-							There are currently no listings for {router.query.categoryname}
+							There are currently no customers for {router.query.categoryname}
 						</p>
 					)}
 				</div>
 				{/* Load more button comes here */}
 
-				{lastListing && (
+				{lastCustomer && (
 					<LoadMore
-						setLastListing={setLastListing}
+						setLastCustomer={setLastCustomer}
 						lastItem={
-							lastListing
+							lastCustomer
 						} /* the last item to begin client data fetching gotten from the parent component. */
-						setNewListings={
-							setFetchedListings
-						} /* sets the state of client fetched listings for the parent componet. */
+						setNewCustomers={
+							setFetchedCustomers
+						} /* sets the state of client fetched customers for the parent componet. */
 						field={
 							router.query.categoryname as category
 						} /* offers | rent | sale */

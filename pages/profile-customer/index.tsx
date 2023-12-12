@@ -1,9 +1,9 @@
 import AuthLayout from '@/components/AuthLayout'
 import DeleteModal from '@/components/DeleteModal'
-import ListingItem from '@/components/ListingItem'
+import CustomerItem from '@/components/CustomerItem'
 import { auth, db } from '@/firebase/firebase.config'
 import useAuthStore from '@/store/useAuthStore'
-import { IListing } from '@/types'
+import { ICustomer } from '@/types'
 import { User, signOut, updateEmail, updateProfile } from 'firebase/auth'
 import {
 	DocumentData,
@@ -25,57 +25,63 @@ import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { toast } from 'react-toastify'
-type userData = {
-	name: string
-	email: string
-}
+
 type Optional<T> = {
 	[P in keyof T]?: T[P]
 }
-type userListingsData = {
+type userCustomersData = {
 	id: string
-	data: IListing
+	data: ICustomer
 }
-function ProfilePage() {
+function ProfileCustomerPage() {
 	const user = useAuthStore((state) => state.user)
 	const logout = useAuthStore((state) => state.logout)
 	const router = useRouter()
-	const [userListings, setUserListings] = useState<userListingsData[]>([])
-	const [formData, setFormData] = useState<userData>({
-		name: user?.displayName ?? '',
-		email: user?.email ?? '',
+	const [userCustomers, setUserCustomers] = useState<userCustomersData[]>([])
+	const [formData, setFormData] = useState<ICustomer>({
+		firstName: userCustomers[0]?.data.firstName ?? '',
+		middleName: userCustomers[0]?.data.middleName ?? '',
+		lastName: userCustomers[0]?.data.lastName ?? '',
+		phone: userCustomers[0]?.data.phone ?? '',
+		email: userCustomers[0]?.data.email ?? '',
+		location: userCustomers[0]?.data.location ?? '',
+		city: userCustomers[0]?.data.city ?? '',
+		role: userCustomers[0]?.data.role ?? '',
+		timestamp: userCustomers[0]?.data.timestamp ?? '',
+		userRef: user?.uid ?? '',
 	})
 	const [changeDetails, setChangeDetails] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [showDeleteModal, setShowDeleteModal] = useState(false)
-	const [selectedListing, setSelectedListing] = useState({
+	const [selectedCustomer, setSelectedCustomer] = useState({
 		id: '',
 		name: '',
 	})
-	async function fetchUserListings() {
+
+	async function fetchUserCustomers() {
 		if (user !== null) {
 			setLoading(true)
 			try {
-				const listingsRef = collection(db, 'listings')
+				const customersRef = collection(db, 'customers')
 				const q = query(
-					listingsRef,
+					customersRef,
 					where('userRef', '==', user.uid),
 					orderBy('timestamp', 'desc')
 				)
-				const listingsSnap = await getDocs(q)
-				console.log(listingsSnap)
-				const listings: userListingsData[] = []
+				const customersSnap = await getDocs(q)
+				console.log(customersSnap)
+				const customers: userCustomersData[] = []
 
-				listingsSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) =>
-					listings.push({
+				customersSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) =>
+					customers.push({
 						id: doc.id,
 						data: {
-							...(doc.data() as IListing),
+							...(doc.data() as ICustomer),
 							timestamp: (doc.data().timestamp as Timestamp).toString(),
 						},
 					})
 				)
-				setUserListings([...listings])
+				setUserCustomers([...customers])
 			} catch (err) {
 				console.log(err)
 			} finally {
@@ -84,7 +90,7 @@ function ProfilePage() {
 		}
 	}
 	useEffect(() => {
-		fetchUserListings()
+		fetchUserCustomers()
 	}, [user])
 
 	async function onLogout() {
@@ -96,10 +102,10 @@ function ProfilePage() {
 		}
 	}
 	async function onSubmit() {
-		const { name, email } = formData
+		const { lastName, email } = formData
 		try {
 			// check if the name or email is empty.
-			if (!name || !email) {
+			if (!lastName || !email) {
 				throw new Error('name or email cannot be empty.')
 			}
 			// this line won't really run but just for security sake.
@@ -107,20 +113,11 @@ function ProfilePage() {
 				throw new Error('the user is not logged in.')
 			}
 			// the updated object that will be passed to firstore.
-			const updated: Optional<userData> = {}
+			const updated: Optional<ICustomer> = {}
 			// if it is not the old name we pass the name to our updated obj and update in fb.
-			if (auth.currentUser.displayName !== name) {
-				updated.name = name
-				await updateProfile(auth.currentUser as User, {
-					displayName: name,
-				})
-			}
+
 			// if it is not the old email we pass the email to our updated obj and update in fb.
-			if (auth.currentUser.email !== email) {
-				updated.email = email
-				await updateEmail(auth.currentUser as User, email)
-			}
-			// our user ref in firestore to update the db.
+
 			const userRef = doc(db, 'users', auth.currentUser.uid)
 			await updateDoc(userRef, updated)
 			toast.success("Successfully updated user's profile ")
@@ -131,11 +128,20 @@ function ProfilePage() {
 			}
 			toast.error(message)
 			setFormData({
-				name: user?.displayName ?? '',
+				firstName: userCustomers[0]?.data.firstName ?? '',
+				middleName: userCustomers[0]?.data.middleName ?? '',
+				lastName: userCustomers[0]?.data.lastName ?? '',
 				email: user?.email ?? '',
+				phone: userCustomers[0]?.data.phone ?? '',
+				location: userCustomers[0]?.data.location ?? '',
+				city: userCustomers[0]?.data.city ?? '',
+				role: userCustomers[0]?.data.role ?? '',
+				timestamp: userCustomers[0]?.data.timestamp ?? '',
+				userRef: user?.uid ?? '',
 			})
 		}
 	}
+
 	function handleChangeDetails() {
 		changeDetails && onSubmit()
 		setChangeDetails((prevState) => !prevState)
@@ -146,32 +152,38 @@ function ProfilePage() {
 			[e.target.name]: e.target.value,
 		}))
 	}
-	async function handleDeleteListing(id: string, name: string) {
-		if (userListings === null) {
+	async function handleDeleteCustomer(id: string, name: string) {
+		if (userCustomers === null) {
 			return
 		}
 		try {
-			await deleteDoc(doc(db, 'listings', id))
-			const updatedListing = userListings.filter((listing) => listing.id !== id)
-			setUserListings(updatedListing)
-			toast.success(`successfully deleted ${name} listing.`)
+			await deleteDoc(doc(db, 'customers', id))
+			const updatedCustomer = userCustomers.filter(
+				(customer) => customer.id !== id
+			)
+			setUserCustomers(updatedCustomer)
+			toast.success(`successfully deleted ${name} customer.`)
 		} catch (err) {
-			toast.error(`failed to deleter ${name} listing`)
+			toast.error(`failed to delete ${name} customer`)
 		}
 	}
 	function onEdit(id: string) {
-		router.push(`/edit-listing/${id}`)
+		router.push(`/edit-customer/${id}`)
 	}
 	return (
 		<>
 			<Head>
-				<title>{formData.name} - Profile</title>
+				<title>
+					{formData.firstName} {formData.lastName} - Profile
+				</title>
 			</Head>
 			<section className='px-8 pb-[5%] md:px-[10%] pt-[5%] md:pb-0 min-h-screen w-full text-gray-800 bg-primary-grey'>
 				<div className='mb-[5rem] flex items-center justify-between'>
 					<h1 className='text-2xl md:text-4xl'>
 						Welcome{' '}
-						<span className='opacity-70 font-medium '>{formData.name}</span>{' '}
+						<span className='opacity-70 font-medium '>
+							{formData.firstName}
+						</span>{' '}
 						<span>👋</span>
 					</h1>
 					<button
@@ -196,14 +208,14 @@ function ProfilePage() {
 					</div>
 					<div className='bg-[#fff] text-gray-800 rounded-2xl space-y-6 shadow-[0px_0px_5px_rgba(0,0,0,0.2)] p-4 h-[225px]'>
 						<div className='flex flex-col mt-2 space-y-2'>
-							<label htmlFor='name' className='pl-4 text-sm opacity-80'>
-								Name
+							<label htmlFor='firstName' className='pl-4 text-sm opacity-80'>
+								First Name
 							</label>
 							<input
 								type='text'
 								disabled={!changeDetails}
-								value={formData.name}
-								name='name'
+								value={formData.firstName}
+								name='firstName'
 								onChange={handleChange}
 								className={`py-2 px-4 text-lg transition-all ease-in duration-300 ${
 									changeDetails
@@ -233,7 +245,7 @@ function ProfilePage() {
 				</form>
 				<button
 					className='bg-primary-white px-8 hover:opacity-70 py-3 h-[50px] shadow-[0px_0px_5px_rgba(0,0,0,0.25)] rounded-3xl flex space-x-3 items-center'
-					onClick={() => router.push('/create-listing')}
+					onClick={() => router.push('/create-customer')}
 				>
 					<span>
 						<svg
@@ -251,27 +263,25 @@ function ProfilePage() {
 						Request a new service
 					</span>
 				</button>
-				{/* All the user's listings will be displayed here */}
+				{/* All the user's customers will be displayed here */}
 				<div className='mt-[5rem]'>
 					<h2 className='md:text-3xl mb-6'>Service History</h2>
 					{loading ? (
 						<div className='h-12 w-12 border-t-transparent block border-solid border rounded-[50%] border-primary-purple animate-spin'></div>
-					) : userListings.length > 0 ? (
+					) : userCustomers.length > 0 ? (
 						<>
-							{userListings.map(({ data, id }) => (
-								<ListingItem
-									bathrooms={data.bathrooms}
-									bedrooms={data.bedrooms}
+							{userCustomers.map(({ data, id }) => (
+								<CustomerItem
 									id={id}
-									imgUrls={data.imgUrls}
 									location={data.location}
-									name={data.name}
-									offer={data.offer}
-									regularPrice={data.regularPrice}
-									type={data.type}
-									discountedPrice={data?.discountedPrice}
+									firstName={data.firstName}
+									middleName={data.middleName}
+									lastName={data.lastName}
+									phone={data.phone}
+									email={data.email}
+									role={data.role}
 									key={id}
-									setSelectedListing={setSelectedListing}
+									setSelectedCustomer={setSelectedCustomer}
 									showDeleteModal={setShowDeleteModal}
 									onEdit={onEdit}
 								/>
@@ -285,7 +295,7 @@ function ProfilePage() {
 							<p className='text-gray-400  mt-4 text-center'>
 								You currently have no services
 								<Link
-									href='/create-listing'
+									href='/create-customer'
 									className='text-violet-500 px-3 opacity-100 font-semibold'
 								>
 									<br />
@@ -298,9 +308,9 @@ function ProfilePage() {
 				<AnimatePresence>
 					{showDeleteModal && (
 						<DeleteModal
-							id={selectedListing.id}
-							name={selectedListing.name}
-							onDelete={handleDeleteListing}
+							id={selectedCustomer.id}
+							name={selectedCustomer.name}
+							onDelete={handleDeleteCustomer}
 							key={'deleteModal'}
 							showDeleteModal={setShowDeleteModal}
 						/>
@@ -310,49 +320,8 @@ function ProfilePage() {
 		</>
 	)
 }
-ProfilePage.getLayout = function getLayout(page: JSX.Element) {
+
+ProfileCustomerPage.getLayout = function getLayout(page: JSX.Element) {
 	return <AuthLayout>{page}</AuthLayout>
 }
-export default ProfilePage
-
-// <div className='p-6'>
-// <Tabs
-// 	defaultActiveKey='1'
-// 	items={items}
-// 	onChange={onChange}
-// 	indicatorSize={(origin) => origin - 16}
-// 	tabPosition='top'
-// 	size='large'
-// 	centered
-// 	className='bg-primary-white'
-// />
-// </div>
-
-// import { Tabs } from 'antd'
-// import type { TabsProps } from 'antd'
-// import CustomersList from './CustomersList'
-// import AddCustomerForm from '@/components/AddCustomerForm'
-
-// const onChange = (key: string) => {
-// 	console.log(key)
-// }
-
-// const items: TabsProps['items'] = [
-// 	{
-// 		key: '1',
-// 		label: 'Customers',
-// 		children: <CustomersList />,
-// 	},
-// 	{
-// 		key: '2',
-// 		label: 'Documents',
-// 		children: 'Content of Tab Pane 2',
-// 	},
-// 	{
-// 		key: '3',
-// 		label: 'Forms',
-// 		children: <AddCustomerForm />,
-// 	},
-// ]
-
-// function ExplorePage() {
+export default ProfileCustomerPage

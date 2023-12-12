@@ -38,7 +38,7 @@ function SigninPage() {
 			const cred = await signInWithEmailAndPassword(auth, email, password)
 			// login the user in our zustand state.
 			login(cred.user)
-			// replace the existing route with the explore page.
+			// replace the existing route with the dashboard page.
 			router.replace('/welcome')
 		} catch (err) {
 			toast.error('invalid email or password')

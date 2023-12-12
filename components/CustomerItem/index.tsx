@@ -1,14 +1,14 @@
-import { IListing } from '@/types'
+import { ICustomer } from '@/types'
 import Link from 'next/link'
 import Image from 'next/image'
 import React, { Dispatch, SetStateAction } from 'react'
 type props = Omit<
-	IListing,
+	ICustomer,
 	'furnished' | 'timestamp' | 'parking' | 'userRef' | 'geoLocation'
 > & {
 	showDeleteModal?: Dispatch<SetStateAction<boolean>>
 	id: string
-	setSelectedListing?: Dispatch<
+	setSelectedCustomer?: Dispatch<
 		SetStateAction<{
 			id: string
 			name: string
@@ -16,31 +16,28 @@ type props = Omit<
 	>
 	onEdit?: (id: string) => void
 }
-function ListingItem({
-	bedrooms,
-	discountedPrice,
+function CustomerItem({
 	id,
-	imgUrls,
+	firstName,
+	middleName,
+	lastName,
+	email,
+	phone,
 	location,
-	name,
-	offer,
-	regularPrice,
-	type,
 	showDeleteModal,
-	setSelectedListing,
-	bathrooms,
+	setSelectedCustomer,
 	onEdit,
 }: props) {
 	return (
 		<Link
-			href={`/category/${type}/${id}`}
+			href={`/category/${CustomerItem}/${id}`}
 			className='flex relative space-x-2 w-full items-center mb-8 min-h-[130px] text-black lg:min-h-[250px]'
 		>
 			<figure className='relative w-[30%] lg:w-[20%] group overflow-hidden h-[130px] lg:h-[250px] mr-5 rounded-3xl p-0'>
 				<Image
 					fill
-					alt={name}
-					src={imgUrls[0]}
+					alt={lastName}
+					src={'/svg/personIcon.svg'}
 					className='object-cover   group-hover:scale-125 transition-all duration-200 ease-linear'
 				/>
 			</figure>
@@ -48,20 +45,10 @@ function ListingItem({
 				<p className='text-[0.7rem] font-semibold opacity-80 mb-0'>
 					{location}
 				</p>
-				<h3 className='font-semibold m-0 text-xl text-black'>{name}</h3>
-				<p className='flex flex-col mt-2 font-semibold text-lg text-primary-purple mb-2'>
-					{offer ? (
-						<span className='text-[0.7rem] line-through text-black opacity-80 '>
-							${regularPrice + (type === 'rent' ? ' / Month' : '')}
-						</span>
-					) : (
-						''
-					)}
-					<span>
-						${offer ? discountedPrice : regularPrice}
-						{type === 'rent' ? ' / Month' : ''}
-					</span>
-				</p>
+				<h3 className='font-semibold m-0 text-xl text-black'>
+					{firstName} {lastName}
+				</h3>
+
 				<div className='flex justify-between flex-wrap  max-w-[300px]'>
 					<p className=' text-[0.72rem] flex items-center gap-3'>
 						<span>
@@ -84,9 +71,6 @@ function ListingItem({
 									</g>
 								</g>
 							</svg>
-						</span>
-						<span>
-							{bedrooms} Bedroom{bedrooms > 1 ? 's' : ''}
 						</span>
 					</p>
 					<p className=' text-[0.72rem] flex font-medium items-center gap-3'>
@@ -114,18 +98,15 @@ function ListingItem({
 								</g>
 							</svg>
 						</span>
-						<span>
-							{bathrooms} Bathroom{bathrooms > 1 ? 's' : ''}
-						</span>
 					</p>
 				</div>
 			</div>
 			{/* Delete Icon */}
-			{showDeleteModal !== undefined && setSelectedListing !== undefined && (
+			{showDeleteModal !== undefined && setSelectedCustomer !== undefined && (
 				<button
 					onClick={(e) => {
 						e.preventDefault()
-						setSelectedListing({ id, name })
+						setSelectedCustomer({ id, name: firstName + ' ' + lastName })
 						showDeleteModal(true)
 					}}
 					className='absolute -top-[3%]  -right-[2%]'
@@ -169,4 +150,4 @@ function ListingItem({
 	)
 }
 
-export default ListingItem
+export default CustomerItem

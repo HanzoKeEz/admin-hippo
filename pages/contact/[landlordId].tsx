@@ -42,7 +42,7 @@ function ContactPage({ user }: { user: user }) {
 
 	useEffect(() => {
 		if (user === null) {
-			router.push('/explore')
+			router.push('/dashboard')
 		} else {
 			setUserData({ ...user.data })
 		}
