@@ -9,7 +9,7 @@ function WelcomePage() {
 	const router = useRouter()
 	useEffect(() => {
 		setTimeout(() => {
-			router.push('/explore')
+			router.push('/dashboard')
 		}, 3500)
 	}, [router])
 	return (
