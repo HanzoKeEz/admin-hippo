@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '@/firebase/firebase.config'
 
-export const AddCustomer = async (payload: { customerId: string }) => {
+export const AddCustomer = async (payload) => {
 	try {
 		await setDoc(doc(db, 'customers', payload.customerId), payload)
 
@@ -86,7 +86,6 @@ export const GetAllCustomers = async () => {
 			}
 		}
 	}
-	// handle case where error is not an instance of Error
 }
 
 export const UpdateCustomer = async (payload: { customerId: string }) => {

@@ -40,11 +40,13 @@ function ProfilePage() {
 	const user = useAuthStore((state) => state.user)
 	const logout = useAuthStore((state) => state.logout)
 	const router = useRouter()
+
 	const [userCustomers, setUserCustomers] = useState<userCustomersData[]>([])
 	const [formData, setFormData] = useState<userData>({
 		name: user?.displayName ?? '',
 		email: user?.email ?? '',
 	})
+
 	const [changeDetails, setChangeDetails] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -52,6 +54,7 @@ function ProfilePage() {
 		id: '',
 		name: '',
 	})
+
 	async function fetchUserCustomers() {
 		if (user !== null) {
 			setLoading(true)
@@ -83,6 +86,7 @@ function ProfilePage() {
 			}
 		}
 	}
+
 	useEffect(() => {
 		fetchUserCustomers()
 	}, [user])

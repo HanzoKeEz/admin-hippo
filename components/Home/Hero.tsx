@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Image from 'next/image'
 import Signing from '../../public/signing.jpg'
+import { LiaHippoSolid } from 'react-icons/lia'
 
 function Hero() {
 	const [currentImage, setCurrentImage] = useState(0)
@@ -12,8 +13,15 @@ function Hero() {
 		<header className='flex h-screen py-12 space-y-8 lg:py-0 lg:space-y-0 lg:h-[calc(100vh-6rem)] items-center mt-[6rem]  flex-col lg:flex-row overflow-hidden bg-primary-grey'>
 			<div className='px-8 ' data-aos='fade-right'>
 				<motion.h1 className='text-3xl block md:text-4xl mb-8 py-2 lg:text-5xl !leading-[1.3]  text-primary-black'>
-					Hippo Docs <br />{' '}
-					<span className='text-primary-purple'>Let Us Carry The </span>Weight
+					Hippo Docs
+					<span>
+						<LiaHippoSolid className='inline text-violet-400 mx-6 ' size={40} />
+					</span>
+					<br />{' '}
+					<span className='text-primary-purple mt-2'>
+						We&apos;ll carry the{' '}
+					</span>
+					Weight
 				</motion.h1>
 
 				<motion.p className='w-[80%] lg:w-[60%] text-slate-700 leading-6 border-l-primary-black border-solid border-l-2  pl-4 opacity-70 mb-10  '>
@@ -26,32 +34,6 @@ function Hero() {
 						className='bg-primary-purple  text-gray-50 sm:text-lg  hover:opacity-75 transition-all ease-in duration-300  font-semibold px-12 rounded-md py-3'
 					>
 						Get Started
-					</button>
-					<button className='cursor-pointer' role='link'>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							height='40px'
-							width='40px'
-							version='1.1'
-							id='Layer_1'
-							viewBox='0 0 472.615 472.615'
-							xmlSpace='preserve'
-							className='rounded-full'
-							style={{
-								boxShadow:
-									'rgba(90,14,102, 0.5) 0px 0px 10px, rgba(90,04,102, 0.75) 0px 2px 10px 2px',
-							}}
-						>
-							<g>
-								<g>
-									<path
-										fill='#8b5cf6'
-										d='M236.308,0C105.799,0,0,105.798,0,236.308c0,130.507,105.799,236.308,236.308,236.308s236.308-105.801,236.308-236.308    C472.615,105.798,366.816,0,236.308,0z M139.346,347.733V124.88l229.37,111.428L139.346,347.733z'
-									/>
-								</g>
-							</g>
-						</svg>
-						<span className='sr-only'>Play</span>
 					</button>
 				</motion.div>
 			</div>

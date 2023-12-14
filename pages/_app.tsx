@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import '@radix-ui/themes/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
@@ -6,6 +7,7 @@ import { Montserrat } from 'next/font/google'
 import { ReactElement, ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { AnimatePresence } from 'framer-motion'
+import { ConfigProvider, theme } from 'antd'
 
 const montserrat = Montserrat({
 	weight: ['400', '700', '600', '500'],
@@ -13,6 +15,7 @@ const montserrat = Montserrat({
 	subsets: ['latin'],
 	fallback: ['serif'],
 })
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode
 }
@@ -31,6 +34,7 @@ export default function App({
 		<AnimatePresence mode='wait'>
 			<div className={montserrat.className}>
 				{getLayout(<Component {...pageProps} key={router.route} />)}
+
 				<ToastContainer
 					className={'rounded-4xl'}
 					theme='dark'

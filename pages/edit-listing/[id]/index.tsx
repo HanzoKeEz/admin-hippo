@@ -78,14 +78,14 @@ function EditCustomerPage({ customer }: { customer: ICustomer }) {
 		} else {
 			setFormData((prevState) => ({ ...prevState, ...customer }))
 		}
-	}, [customer, user])
+	}, [customer, user, router])
 
 	// kick user out if not logged in.
 	useEffect(() => {
 		if (user === null) {
 			router.push('/signin')
 		}
-	}, [user])
+	}, [user, router])
 
 	// keep the name of the old city.
 	useEffect(() => {

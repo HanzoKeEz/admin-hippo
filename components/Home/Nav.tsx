@@ -39,7 +39,8 @@ function Nav() {
 					onClick={() => setShowMobileNav(true)}
 					className='space-y-2 lg:hidden cursor-pointer '
 				>
-					<span className='block w-8 h-0.5 g bg-gray-600'></span>
+					<span className='block w-5 h-0.5 bg-gray-600'></span>
+					<span className='block w-5 h-0.5 bg-gray-600'></span>
 					<span className='block w-5 h-0.5 bg-gray-600'></span>
 				</div>
 			</div>
@@ -50,14 +51,14 @@ function Nav() {
 						key='div'
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						transition={{ duration: 0.85 }}
+						transition={{ duration: 0.55 }}
 						exit={{ opacity: 0 }}
 						className='fixed top-0 bottom-0 backdrop-blur-md bg-[rgba(0,0,0,0.25)] h-full w-full grid place-items-center'
 					>
 						<motion.ul
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
-							transition={{ duration: 0.85, delay: 0.55 }}
+							transition={{ duration: 0.55 }}
 							className='flex relative flex-col  text-lg py-8 px-12 rounded-[25px] text-center text-primary-white bg-primary-purple h-[250px] w-[220px]'
 						>
 							<button

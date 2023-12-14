@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BiSolidNavigation, BiUserCircle } from 'react-icons/bi'
+import { LiaHippoSolid } from 'react-icons/lia'
 
 function NavBar() {
 	const router = useRouter()
@@ -30,9 +31,11 @@ function NavBar() {
 
 				<li className='md:hover:bg-gray-300 md:w-full md:px-3 md:rounded-md md:flex md:py-2'>
 					<Link
-						href='/profile'
+						href='/profile-customer'
 						className={`flex flex-col space-y-2 items-center justify-center md:space-x-4 md:flex-row md:space-y-0 ${
-							pathMatchRoute('/profile') ? 'text-gray-900' : 'text-gray-500'
+							pathMatchRoute('/profile-customer')
+								? 'text-gray-900'
+								: 'text-gray-500'
 						}`}
 					>
 						<BiUserCircle
