@@ -27,57 +27,57 @@ const CustomersList = () => {
 	const [customers, setCustomers] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	async function fetchCustomers() {
-		if (user !== null) {
-			setLoading(true)
-			try {
-				const customersRef = collection(db, 'customers')
-				const q = query(
-					customersRef,
-					where('userRef', '==', user.uid),
-					orderBy('timestamp', 'desc')
-				)
-				const customersSnap = await getDocs(q)
-				console.log(customersSnap)
-				const customers: CustomerData[] = []
-
-				customersSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) =>
-					customers.push({
-						id: doc.id,
-						data: {
-							...(doc.data() as ICustomer),
-							timestamp: (doc.data().timestamp as Timestamp).toString(),
-						},
-					})
-				)
-				setUserCustomers([...customers])
-			} catch (err) {
-				console.log(err)
-			} finally {
-				setLoading(false)
-			}
-		}
-	}
-
-	useEffect(() => {
-		fetchCustomers()
-	}, [user])
-
-	// const getData = async () => {
-	// 	try {
+	// async function fetchCustomers() {
+	// 	if (user !== null) {
 	// 		setLoading(true)
-	// 		const response = await GetAllCustomers()
-	// 		setLoading(false)
-	// 		if (response?.success) {
-	// 			setCustomers(response.data)
-	// 		} else {
-	// 			throw new Error('error fetching data')
+	// 		try {
+	// 			const customersRef = collection(db, 'customers')
+	// 			const q = query(
+	// 				customersRef,
+	// 				where('userRef', '==', user.uid),
+	// 				orderBy('timestamp', 'desc')
+	// 			)
+	// 			const customersSnap = await getDocs(q)
+	// 			console.log(customersSnap)
+	// 			const customers: CustomerData[] = []
+
+	// 			customersSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) =>
+	// 				customers.push({
+	// 					id: doc.id,
+	// 					data: {
+	// 						...(doc.data() as ICustomer),
+	// 						timestamp: (doc.data().timestamp as Timestamp).toString(),
+	// 					},
+	// 				})
+	// 			)
+	// 			setCustomers([...customers])
+	// 		} catch (err) {
+	// 			console.log(err)
+	// 		} finally {
+	// 			setLoading(false)
 	// 		}
-	// 	} catch (error) {
-	// 		setLoading(false)
-	// 		message.error('error fetching data')
 	// 	}
 	// }
+
+	// useEffect(() => {
+	// 	fetchCustomers()
+	// }, [user])
+
+	const getData = async () => {
+		try {
+			setLoading(true)
+			const response = await GetAllCustomers()
+			setLoading(false)
+			if (response?.success) {
+				setCustomers(response.data)
+			} else {
+				throw new Error('error fetching data')
+			}
+		} catch (error) {
+			setLoading(false)
+			message.error('error fetching data')
+		}
+	}
 
 	const changeStatus = async (payload) => {
 		try {
@@ -96,7 +96,10 @@ const CustomersList = () => {
 		}
 	}
 
-	const columns: TableProps<CustomerType>['columns'] = [
+	useEffect(() => {
+		getData()
+	}, [])
+	const columns: TableProps<ICustomer>['columns'] = [
 		{
 			title: 'ID',
 			dataIndex: 'id',
@@ -126,83 +129,6 @@ const CustomersList = () => {
 		{
 			title: 'Speciality',
 			dataIndex: 'speciality',
-		},
-		{
-			title: 'Status',
-			dataIndex: 'status',
-			render: (text, record) => {
-				return text.toUpperCase()
-			},
-		},
-		{
-			title: 'Actions',
-			dataIndex: 'actions',
-			render: (text, record) => {
-				if (record.status === 'pending') {
-					return (
-						<div className='flex gap-1'>
-							<span
-								className='underline cursor-pointer'
-								onClick={() =>
-									changeStatus({
-										...record,
-										status: 'rejected',
-									})
-								}
-							>
-								Reject
-							</span>
-							<span
-								className='underline cursor-pointer'
-								onClick={() =>
-									changeStatus({
-										...record,
-										status: 'approved',
-									})
-								}
-							>
-								Approve
-							</span>
-						</div>
-					)
-				}
-
-				if (record.status === 'approved') {
-					return (
-						<div className='flex gap-1'>
-							<span
-								className='underline cursor-pointer'
-								onClick={() =>
-									changeStatus({
-										...record,
-										status: 'blocked',
-									})
-								}
-							>
-								Block
-							</span>
-						</div>
-					)
-				}
-
-				if (record.status === 'blocked') {
-					return (
-						<div className='flex gap-1'>
-							<span
-								className='underline cursor-pointer'
-								onClick={() =>
-									changeStatus({
-										...record,
-										status: 'approved',
-									})
-								}
-							>
-								Unblock
-							</span>
-						</div>
-					)
-				}
-			},
 		},
 	]
 
