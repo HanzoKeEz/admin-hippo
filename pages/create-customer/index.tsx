@@ -120,7 +120,7 @@ function CreateCustomerPage(): JSX.Element {
 			}
 		}
 
-		// for Booleans, Strings and Numbers.
+		// 	// for Booleans, Strings and Numbers.
 		setFormData((prevState) => ({
 			...prevState,
 			[id]: bool ?? value,

@@ -267,6 +267,7 @@ function ProfilePage() {
 							{userCustomers.map(({ data, id }) => (
 								<CustomerItem
 									id={id}
+									key={id}
 									firstName={data.firstName}
 									middleName={data.middleName}
 									lastName={data.lastName}
@@ -274,7 +275,7 @@ function ProfilePage() {
 									phone={data.phone}
 									role={data.role}
 									location={data.location}
-									key={id}
+									city={data.city}
 									setSelectedCustomer={setSelectedCustomer}
 									showDeleteModal={setShowDeleteModal}
 									onEdit={onEdit}

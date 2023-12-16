@@ -24,6 +24,7 @@ function CustomerItem({
 	email,
 	phone,
 	location,
+	city,
 	showDeleteModal,
 	setSelectedCustomer,
 	onEdit,
