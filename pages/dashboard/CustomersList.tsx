@@ -1,67 +1,27 @@
-import React, { useEffect, useState } from 'react'
 import { Table, message } from 'antd'
+import React, { useEffect, useState } from 'react'
 import type { TableProps } from 'antd'
+import type { ColumnsType } from 'antd/es/table'
 import { GetAllCustomers, UpdateCustomer } from '@/apicalls/customers'
 import useAuthStore from '@/store/useAuthStore'
-import {
-	QueryDocumentSnapshot,
-	collection,
-	DocumentData,
-	getDocs,
-	orderBy,
-	query,
-	where,
-	Timestamp,
-} from 'firebase/firestore'
-import { db } from '@/firebase/firebase.config'
-import { ICustomer } from '@/types'
 
-type CustomerData = {
+interface Customer {
 	id: string
-	data: ICustomer
+	firstName: string
+	middleName: string
+	lastName: string
+	email: string
+	phone: string
+	location: string
+	role: string
+	city: string
+	status: string
+	actions: string
 }
 
 const CustomersList = () => {
-	const user = useAuthStore((state) => state.user)
-	const [userCustomers, setUserCustomers] = useState<CustomerData[]>([])
 	const [customers, setCustomers] = useState([])
 	const [loading, setLoading] = useState(true)
-
-	// async function fetchCustomers() {
-	// 	if (user !== null) {
-	// 		setLoading(true)
-	// 		try {
-	// 			const customersRef = collection(db, 'customers')
-	// 			const q = query(
-	// 				customersRef,
-	// 				where('userRef', '==', user.uid),
-	// 				orderBy('timestamp', 'desc')
-	// 			)
-	// 			const customersSnap = await getDocs(q)
-	// 			console.log(customersSnap)
-	// 			const customers: CustomerData[] = []
-
-	// 			customersSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) =>
-	// 				customers.push({
-	// 					id: doc.id,
-	// 					data: {
-	// 						...(doc.data() as ICustomer),
-	// 						timestamp: (doc.data().timestamp as Timestamp).toString(),
-	// 					},
-	// 				})
-	// 			)
-	// 			setCustomers([...customers])
-	// 		} catch (err) {
-	// 			console.log(err)
-	// 		} finally {
-	// 			setLoading(false)
-	// 		}
-	// 	}
-	// }
-
-	// useEffect(() => {
-	// 	fetchCustomers()
-	// }, [user])
 
 	const getData = async () => {
 		try {
@@ -79,7 +39,7 @@ const CustomersList = () => {
 		}
 	}
 
-	const changeStatus = async (payload) => {
+	const changeStatus = async (payload: Customer) => {
 		try {
 			setLoading(true)
 			const response = await UpdateCustomer(payload)
@@ -99,7 +59,8 @@ const CustomersList = () => {
 	useEffect(() => {
 		getData()
 	}, [])
-	const columns: TableProps<ICustomer>['columns'] = [
+
+	const columns: ColumnsType<Customer> = [
 		{
 			title: 'ID',
 			dataIndex: 'id',
@@ -127,8 +88,117 @@ const CustomersList = () => {
 		},
 
 		{
-			title: 'Speciality',
-			dataIndex: 'speciality',
+			title: 'Phone Number',
+			dataIndex: 'phone',
+			width: 120,
+		},
+		{
+			title: 'Location',
+			dataIndex: 'location',
+			width: 120,
+		},
+
+		{
+			title: 'City',
+			dataIndex: 'city',
+			width: 120,
+		},
+		{
+			title: 'Role',
+			dataIndex: 'role',
+			width: 120,
+		},
+		{
+			title: 'Status',
+			dataIndex: 'status',
+			width: 120,
+			render: (text, record: Customer) => {
+				if (record.status === 'pending') {
+					return (
+						<span className='text-blue-500 border-2 border-blue-500 p-2 rounded-lg'>
+							{record.status}
+						</span>
+					)
+				}
+
+				if (record.status === 'approved') {
+					return <span className='text-green-500'>{record.status}</span>
+				}
+
+				if (record.status === 'rejected') {
+					return <span className='text-red-500'>{record.status}</span>
+				}
+			},
+		},
+		{
+			title: 'Actions',
+			dataIndex: 'actions',
+			render: (text, record) => {
+				if (record.status === 'pending') {
+					return (
+						<div className='flex gap-1'>
+							<span
+								className='underline cursor-pointer'
+								onClick={() =>
+									changeStatus({
+										...record,
+										status: 'rejected',
+									})
+								}
+							>
+								Reject
+							</span>
+							<span
+								className='underline cursor-pointer'
+								onClick={() =>
+									changeStatus({
+										...record,
+										status: 'approved',
+									})
+								}
+							>
+								Approve
+							</span>
+						</div>
+					)
+				}
+
+				if (record.status === 'approved') {
+					return (
+						<div className='flex gap-1'>
+							<span
+								className='underline cursor-pointer'
+								onClick={() =>
+									changeStatus({
+										...record,
+										status: 'blocked',
+									})
+								}
+							>
+								Block
+							</span>
+						</div>
+					)
+				}
+
+				if (record.status === 'blocked') {
+					return (
+						<div className='flex gap-1'>
+							<span
+								className='underline cursor-pointer'
+								onClick={() =>
+									changeStatus({
+										...record,
+										status: 'approved',
+									})
+								}
+							>
+								Unblock
+							</span>
+						</div>
+					)
+				}
+			},
 		},
 	]
 

@@ -3,6 +3,7 @@ import { ICustomer } from '@/types'
 import formatTimestamp from '@/utils/formatTimestamp'
 import {
 	DocumentData,
+	FieldValue,
 	QueryDocumentSnapshot,
 	Timestamp,
 	collection,
@@ -65,7 +66,7 @@ function LoadMore({
 					id: doc.id,
 					data: {
 						...(doc.data() as ICustomer),
-						timestamp: timestampString,
+						timestamp: FieldValue ? timestampString : doc.data().timestamp,
 					},
 				})
 			})

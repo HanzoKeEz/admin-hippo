@@ -81,7 +81,7 @@ function SignupPage() {
 						transition={{ duration: 1.2, ease: 'easeIn', delay: 1 }}
 					>
 						<Image
-							src={'/signup-home.png'}
+							src={'/public/signup-home.png'}
 							alt={'sign up home'}
 							width={400}
 							height={400}

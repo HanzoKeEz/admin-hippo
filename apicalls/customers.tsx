@@ -10,13 +10,14 @@ import {
 } from 'firebase/firestore'
 import { db } from '@/firebase/firebase.config'
 
-export const AddCustomer = async (payload) => {
+export const AddCustomer = async (payload: { id: string }) => {
 	try {
-		await setDoc(doc(db, 'customers', payload.customerId), payload)
+		await setDoc(doc(db, 'customers', payload.id), payload)
 
 		// update customer role
-		await updateDoc(doc(db, 'customers', payload.customerId), {
+		await updateDoc(doc(db, 'customers', payload.id), {
 			role: 'customer',
+			status: 'pending',
 		})
 		return {
 			success: true,
@@ -36,7 +37,7 @@ export const AddCustomer = async (payload) => {
 export const CheckIfCustomerAccountIsApplied = async (id: string) => {
 	try {
 		const customers = await getDocs(
-			query(collection(db, 'customers'), where('customerId', '==', id))
+			query(collection(db, 'customers'), where('id', '==', id))
 		)
 		if (customers.size > 0) {
 			return {
@@ -88,9 +89,9 @@ export const GetAllCustomers = async () => {
 	}
 }
 
-export const UpdateCustomer = async (payload: { customerId: string }) => {
+export const UpdateCustomer = async (payload: { id: string }) => {
 	try {
-		await setDoc(doc(db, 'customers', payload.customerId), payload)
+		await setDoc(doc(db, 'customers', payload.id), payload)
 		return {
 			success: true,
 			message: 'Customer updated successfully',

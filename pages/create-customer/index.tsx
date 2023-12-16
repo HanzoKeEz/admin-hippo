@@ -24,7 +24,7 @@ import useAuthStore from '@/store/useAuthStore'
 import { useRouter } from 'next/router'
 import Spinner from '@/components/Spinner'
 import AuthLayout from '@/components/AuthLayout'
-import PreviewImage from '@/components/PreviewImage'
+import { Form } from 'antd'
 
 type formData = {
 	firstName: string
@@ -35,10 +35,13 @@ type formData = {
 	location: string
 	role: string
 	city: string
+
 	userRef: string
 }
 
 function CreateCustomerPage(): JSX.Element {
+	const [form] = Form.useForm()
+	const [alreadyApproved, setAlreadyApproved] = useState<boolean>(false)
 	const router = useRouter()
 	const imageInput = useRef<HTMLInputElement | null>(null)
 	const user = useAuthStore((state) => state.user)
@@ -52,18 +55,19 @@ function CreateCustomerPage(): JSX.Element {
 		role: 'customer',
 		city: '',
 		userRef: '',
+		status: 'pending',
 	})
 	const [loading, setLoading] = useState<boolean>(false)
 
 	//Get user id | ref (whatever you want to call it) on first mount.
 
-	useEffect(() => {
-		if (user) {
-			setFormData({ ...formData, userRef: user.uid })
-		} else {
-			router.push('/signin')
-		}
-	}, [user])
+	// useEffect(() => {
+	// 	if (user) {
+	// 		setFormData({ ...formData, userRef: user.uid })
+	// 	} else {
+	// 		router.push('/signin')
+	// 	}
+	// })
 
 	// form submission handler.
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -72,6 +76,7 @@ function CreateCustomerPage(): JSX.Element {
 		try {
 			const customerData: ICustomer = {
 				timestamp: serverTimestamp(),
+				status: 'pending',
 				...formData,
 			}
 

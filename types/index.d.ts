@@ -25,12 +25,12 @@ interface ICustomer {
 	phone: string
 	location: string
 	role: string
-	city?: string
+	city: string
+	timestamp: FieldValue | string | Timestamp
 	userRef: string
-	speciality: string
-	status: string
-	actions: string
-	timestamp: Timestamp | string | FieldValue
+	speciality?: string
+	status?: string
+	actions?: string
 }
 
 export { category, geoLocation, geoData, IUser, ICustomer }
