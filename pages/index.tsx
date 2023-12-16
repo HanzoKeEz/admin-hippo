@@ -8,7 +8,7 @@ export default function LoadingPage() {
 	const router = useRouter()
 	useEffect(() => {
 		setTimeout(() => router.push('/home'), 3500)
-	}, [])
+	}, [router])
 
 	return (
 		<>

@@ -35,8 +35,7 @@ type formData = {
 	location: string
 	role: string
 	city: string
-
-	userRef: string
+	status: string
 }
 
 function CreateCustomerPage(): JSX.Element {
@@ -54,7 +53,6 @@ function CreateCustomerPage(): JSX.Element {
 		location: '',
 		role: 'customer',
 		city: '',
-		userRef: '',
 		status: 'pending',
 	})
 	const [loading, setLoading] = useState<boolean>(false)
@@ -76,7 +74,6 @@ function CreateCustomerPage(): JSX.Element {
 		try {
 			const customerData: ICustomer = {
 				timestamp: serverTimestamp(),
-				status: 'pending',
 				...formData,
 			}
 
@@ -94,19 +91,19 @@ function CreateCustomerPage(): JSX.Element {
 		}
 	}
 	// function to store image in firebase
-	async function storeImage(image: string) {
-		const storage = getStorage()
-		// put the actual user id important
-		const fileName = `${formData.userRef}-${new Date().getTime()}`
-		const storageRef = ref(storage, fileName)
-		try {
-			const snapShot = await uploadString(storageRef, image, 'data_url')
-			const downloadUrl = await getDownloadURL(snapShot.ref)
-			return downloadUrl
-		} catch (err) {
-			throw new Error()
-		}
-	}
+	// async function storeImage(image: string) {
+	// 	const storage = getStorage()
+	// 	// put the actual user id important
+	// 	const fileName = `${formData.userRef}-${new Date().getTime()}`
+	// 	const storageRef = ref(storage, fileName)
+	// 	try {
+	// 		const snapShot = await uploadString(storageRef, image, 'data_url')
+	// 		const downloadUrl = await getDownloadURL(snapShot.ref)
+	// 		return downloadUrl
+	// 	} catch (err) {
+	// 		throw new Error()
+	// 	}
+	// }
 	function onMutate(
 		e: MouseEvent<HTMLButtonElement> | ChangeEvent<HTMLInputElement>
 	) {

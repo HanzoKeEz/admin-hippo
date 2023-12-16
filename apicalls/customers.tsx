@@ -76,6 +76,15 @@ export const GetAllCustomers = async () => {
 				return {
 					...doc.data(),
 					id: doc.id,
+					firstName: doc.data().firstName,
+					middleName: doc.data().middleName,
+					lastName: doc.data().lastName,
+					email: doc.data().email,
+					phone: doc.data().phone,
+					location: doc.data().location,
+					city: doc.data().city,
+					role: doc.data().role,
+					status: doc.data().status,
 				}
 			}),
 		}

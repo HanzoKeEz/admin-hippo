@@ -27,7 +27,7 @@ interface ICustomer {
 	role: string
 	city: string
 	timestamp: FieldValue | string | Timestamp
-	userRef: string
+
 	speciality?: string
 	status?: string
 	actions?: string

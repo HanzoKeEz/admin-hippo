@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { Dispatch, SetStateAction } from 'react'
 type props = Omit<
 	ICustomer,
-	'furnished' | 'timestamp' | 'parking' | 'userRef' | 'geoLocation'
+	'furnished' | 'timestamp' | 'parking' | 'id' | 'geoLocation'
 > & {
 	showDeleteModal?: Dispatch<SetStateAction<boolean>>
 	id: string

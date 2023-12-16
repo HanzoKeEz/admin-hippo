@@ -32,7 +32,7 @@ type userData = {
 type Optional<T> = {
 	[P in keyof T]?: T[P]
 }
-type userCustomersData = {
+type CustomersData = {
 	id: string
 	data: ICustomer
 }
@@ -41,7 +41,7 @@ function ProfilePage() {
 	const logout = useAuthStore((state) => state.logout)
 	const router = useRouter()
 
-	const [userCustomers, setUserCustomers] = useState<userCustomersData[]>([])
+	const [userCustomers, setUserCustomers] = useState<CustomersData[]>([])
 	const [formData, setFormData] = useState<userData>({
 		name: user?.displayName ?? '',
 		email: user?.email ?? '',
@@ -67,7 +67,7 @@ function ProfilePage() {
 				)
 				const customersSnap = await getDocs(q)
 				console.log(customersSnap)
-				const customers: userCustomersData[] = []
+				const customers: CustomersData[] = []
 
 				customersSnap.forEach((doc: QueryDocumentSnapshot<DocumentData>) =>
 					customers.push({

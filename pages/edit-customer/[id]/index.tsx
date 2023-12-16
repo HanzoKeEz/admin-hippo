@@ -62,7 +62,7 @@ function EditCustomerPage({ customer }: { customer: ICustomer }) {
 		phone: '',
 		location: '',
 		city: '',
-		userRef: '',
+		// userRef: '',
 		role: 'customer',
 		timestamp: '',
 	})
@@ -71,14 +71,14 @@ function EditCustomerPage({ customer }: { customer: ICustomer }) {
 	// check if it is the user customer
 	// not the logged in users customers then redirect
 	// prefill the form with data in the firebase.
-	useEffect(() => {
-		if (customer?.userRef !== user?.uid) {
-			toast.error(`you cannot edit ${customer.firstName} as it not yours`)
-			setTimeout(() => router.push('/dashboard'), 3000)
-		} else {
-			setFormData((prevState) => ({ ...prevState, ...customer }))
-		}
-	}, [customer, user, router])
+	// useEffect(() => {
+	// 	if (customer?.userRef !== user?.uid) {
+	// 		toast.error(`you cannot edit ${customer.userRef} as it not yours`)
+	// 		setTimeout(() => router.push('/dashboard'), 3000)
+	// 	} else {
+	// 		setFormData((prevState) => ({ ...prevState, ...customer }))
+	// 	}
+	// }, [customer, user, router])
 
 	// kick user out if not logged in.
 	useEffect(() => {
@@ -88,11 +88,11 @@ function EditCustomerPage({ customer }: { customer: ICustomer }) {
 	}, [user, router])
 
 	// keep the name of the old city.
-	useEffect(() => {
-		if (customer.city) {
-			oldCity.current = customer.city
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (customer.city) {
+	// 		oldCity.current = customer.city
+	// 	}
+	// }, [])
 
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()

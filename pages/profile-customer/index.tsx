@@ -28,7 +28,7 @@ function ProfileCustomerPage() {
 		speciality: '',
 		status: '',
 		timestamp: '',
-		userRef: '',
+		// userRef: '',
 	})
 	return (
 		<>

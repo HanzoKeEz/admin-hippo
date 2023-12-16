@@ -16,22 +16,22 @@ interface Customer {
 	role: string
 	city: string
 	status: string
-	actions: string
 }
 
 const CustomersList = () => {
-	const [customers, setCustomers] = useState([])
+	const [customers, setCustomers] = useState<Customer[]>([])
 	const [loading, setLoading] = useState(true)
 
 	const getData = async () => {
 		try {
 			setLoading(true)
 			const response = await GetAllCustomers()
+			console.log(response)
 			setLoading(false)
-			if (response?.success) {
+			if (response?.data) {
 				setCustomers(response.data)
 			} else {
-				throw new Error('error fetching data')
+				setCustomers([])
 			}
 		} catch (error) {
 			setLoading(false)
@@ -39,10 +39,11 @@ const CustomersList = () => {
 		}
 	}
 
-	const changeStatus = async (payload: Customer) => {
+	const changeStatus = async (payload = { id: '', status: '' }) => {
 		try {
 			setLoading(true)
 			const response = await UpdateCustomer(payload)
+			console.log('response from changeStatus', response)
 			setLoading(false)
 			if (response?.success) {
 				message.success('status updated')
@@ -115,18 +116,26 @@ const CustomersList = () => {
 			render: (text, record: Customer) => {
 				if (record.status === 'pending') {
 					return (
-						<span className='text-blue-500 border-2 border-blue-500 p-2 rounded-lg'>
+						<span className='text-blue-500 border-2 border-blue-500 p-2 rounded-lg bg-blue-100 uppercase font-semibold'>
 							{record.status}
 						</span>
 					)
 				}
 
 				if (record.status === 'approved') {
-					return <span className='text-green-500'>{record.status}</span>
+					return (
+						<span className='text-green-500 border-2 border-green-500 p-2 rounded-lg bg-green-100 uppercase font-semibold '>
+							{record.status}
+						</span>
+					)
 				}
 
 				if (record.status === 'rejected') {
-					return <span className='text-red-500'>{record.status}</span>
+					return (
+						<span className='text-red-500 border-2 border-red-500 p-2 rounded-lg bg-red-100 uppercase font-semibold'>
+							{record.status}
+						</span>
+					)
 				}
 			},
 		},
