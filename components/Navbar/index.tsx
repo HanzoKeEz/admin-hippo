@@ -12,10 +12,7 @@ function NavBar() {
 		return false
 	}
 	return (
-		<nav className='fixed max-md:bottom-0 h-[110px] z-[900] py-5 px-3 w-full border-t border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[225px] md:py-8 '>
-			<div className='bg-blue-300'>
-				<ThemeToggle />
-			</div>
+		<nav className='fixed max-md:bottom-0 h-[100px] z-[900] py-5 px-3 w-full border-t border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[225px] md:py-8 '>
 			<ul className='flex space-x-12 items-center justify-center md:space-x-0 md:flex-col md:justify-start md:items-start md:space-y-4 md:mt-[50px] w-full'>
 				<li className='md:hover:bg-gray-300 md:w-full md:px-3 md:rounded-md md:flex md:py-2'>
 					<Link
@@ -26,7 +23,7 @@ function NavBar() {
 					>
 						<BiSolidNavigation
 							className='max-md:hover:scale-100 transition-all ease-out duration-300'
-							size={35}
+							size={24}
 						/>
 
 						<span>Dashboard</span>
@@ -44,7 +41,7 @@ function NavBar() {
 					>
 						<BiUserCircle
 							className='max-md:hover:scale-110 transition-all ease-out duration-300'
-							size={35}
+							size={24}
 						/>
 						<span>Profile</span>
 					</Link>
@@ -60,7 +57,7 @@ function NavBar() {
 					>
 						<BiUserCircle
 							className='max-md:hover:scale-110 transition-all ease-out duration-300'
-							size={35}
+							size={24}
 						/>
 						<span>Customer Profile</span>
 					</Link>

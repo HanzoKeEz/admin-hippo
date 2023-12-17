@@ -78,8 +78,8 @@ export const Stepper = (): JSX.Element => {
 	}, [currentStep, handleNextStep, handlePrevStep])
 
 	return (
-		<main className='my-2 mx-16 p-12 rounded-lg border	min-h-screen'>
-			<div className='border-black border p-12 rounded-lg'>
+		<main className=' '>
+			<div className='bg-slate-500 border py-6 px-16 m-3 rounded-lg'>
 				{getCurrentStep}
 			</div>
 		</main>

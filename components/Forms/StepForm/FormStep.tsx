@@ -2,6 +2,7 @@ import { Avatar, Button, Progress, theme, Typography } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { type ReactNode } from 'react'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 const { Title } = Typography
 const { useToken } = theme
@@ -33,13 +34,13 @@ export const FormStep = (props: FormStepProps): JSX.Element => {
 	}
 
 	return (
-		<article className='w-full grid gap-14'>
+		<article className='w-full grid gap-6'>
 			<header>
-				<Progress percent={progress} strokeColor={token.colorPrimary} />
+				<Progress percent={progress} strokeColor={token['geekblue-4']} />
 
 				<div className='flex flex-col sm:flex-row items-center gap-4 mt-2'>
-					<div className='w-[64px]'>
-						<Avatar size={64} icon={<UserOutlined />} />
+					<div className='px-3 py-2 w-[64px]'>
+						<Avatar size={44} icon={<UserOutlined />} />
 					</div>
 
 					<Title level={3}>{title}</Title>
@@ -51,8 +52,7 @@ export const FormStep = (props: FormStepProps): JSX.Element => {
 			<nav
 				className={clsx(
 					'flex justify-between p-5 sm:p-0',
-					'fixed sm:relative inset-x-0 bottom-0',
-					'bg-gradient-to-t from-white to-transparent'
+					'fixed sm:relative inset-x-0 bottom-0'
 				)}
 			>
 				<Button
@@ -74,7 +74,11 @@ export const FormStep = (props: FormStepProps): JSX.Element => {
 					size='large'
 					onClick={handleNext}
 				>
-					{currentStep === 4 ? 'Return to Dashboard' : 'Next'}
+					{currentStep === 4 ? (
+						<Link href='/profile-customer'>Return to Dashboard</Link>
+					) : (
+						'Next'
+					)}
 				</Button>
 			</nav>
 		</article>

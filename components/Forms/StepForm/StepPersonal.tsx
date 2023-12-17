@@ -1,6 +1,8 @@
 import { Input } from '@/components/ui/input'
-import { Slider, Typography } from 'antd'
-import { type SliderMarks } from 'antd/es/slider'
+import { Separator } from '@/components/ui/separator'
+
+import { Typography } from 'antd'
+
 import { useState } from 'react'
 
 const { Title } = Typography
@@ -11,8 +13,8 @@ export const StepPersonal = (): JSX.Element => {
 	return (
 		<>
 			<section className='grid gap-4'>
-				<div className='flex justify-start'>
-					<Title level={4} className='mb-4'>
+				<div className='flex justify-start '>
+					<Title level={4} className='text-violet-100'>
 						Personal Info
 					</Title>
 				</div>
@@ -21,6 +23,11 @@ export const StepPersonal = (): JSX.Element => {
 					<Input placeholder='Social security number' />
 					<Input placeholder='Sex' />
 					<Input placeholder='Date of birth' />
+
+					<Separator />
+					<Title level={4} className='text-violet-100'>
+						Property Info
+					</Title>
 					<Input placeholder='Street Address' />
 					<Input placeholder='City' />
 					<Input placeholder='State' />

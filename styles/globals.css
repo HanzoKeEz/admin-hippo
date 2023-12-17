@@ -98,6 +98,9 @@
 	.listing-input {
 		@apply border outline-none;
 	}
+	.tabsTrigger {
+		@apply cursor-pointer selection:bg-slate-800 focus:bg-primary-purple bg-slate-700 hover:bg-primary-purple rounded-lg py-1 px-2 hover:text-primary-white ease-linear duration-200 border-primary-white border;
+	}
 }
 
 @layer base {

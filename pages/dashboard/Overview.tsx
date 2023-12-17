@@ -56,16 +56,16 @@ function Overview() {
 	return (
 		<div className='container border-2'>
 			<div className='flex items-center'>
-				<div className='flex gap-4 m-6'>
+				<div className='flex w-full justify-evenly m-6'>
 					<Card>
-						<CardHeader className='flex flex-row items-center justify-between space-y-0 p-6'>
+						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
 							<CardTitle className='text-sm font-medium'>
-								Total Customers
+								Total Orders Requested
 							</CardTitle>
 							<FaFileAlt />
 						</CardHeader>
 						<CardContent>
-							<div className='text-2xl font-bold'>
+							<div className='text-xl flex justify-center'>
 								{customers.length} Total{' '}
 							</div>
 						</CardContent>
@@ -78,7 +78,7 @@ function Overview() {
 									customers.filter((customer) => customer.status == 'pending')
 										.length
 								}{' '}
-								Currently Pending
+								Pending
 							</CardTitle>
 						</CardHeader>
 						<CardContent>
@@ -86,31 +86,26 @@ function Overview() {
 						</CardContent>
 					</Card>
 					<Card>
-						<CardHeader className='flex flex-col items-center justify-between space-y-0 pb-2'>
-							<PiCheckFat />
-
-							<CardTitle className='text-sm font-medium text-green-500'>
-								<div className='text-lg'>
-									{
-										customers.filter(
-											(customer) => customer.status == 'approved'
-										).length
-									}{' '}
-									Approved
-								</div>
+						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
+							<CardTitle className='text-sm font-medium text-green-500 flex flex-col justify-center items-center gap-6'>
+								<MdOutlineWorkspaces size={20} className='text-green-500' />
+								{
+									customers.filter((customer) => customer.status == 'approved')
+										.length
+								}{' '}
+								Approved
 							</CardTitle>
 						</CardHeader>
-						<CardContent></CardContent>
 					</Card>
 					<Card>
 						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-							<CardTitle className='text-sm font-medium text-red-500 flex flex-col items-center '>
-								<TiCancelOutline />
+							<CardTitle className='text-sm font-medium text-red-500 flex flex-col justify-center items-center gap-6'>
+								<TiCancelOutline size={24} className='text-red-500' />
 								{
 									customers.filter((customer) => customer.status == 'rejected')
 										.length
 								}{' '}
-								Rejected
+								Need Attention
 							</CardTitle>
 						</CardHeader>
 					</Card>

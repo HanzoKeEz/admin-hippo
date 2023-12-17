@@ -1,8 +1,17 @@
-import { CloseOutlined } from '@ant-design/icons'
-import { Button, Card, Form, Input, InputNumber, Space, Typography } from 'antd'
-import { useState } from 'react'
+import * as React from 'react'
 
-const { Title, Paragraph } = Typography
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select'
+import { CloseOutlined } from '@ant-design/icons'
+import { Card, Button, Form, Input, Space, Typography } from 'antd'
+import { useState } from 'react'
 
 export const StepFamily = (): JSX.Element => {
 	const [form] = Form.useForm()
@@ -10,27 +19,37 @@ export const StepFamily = (): JSX.Element => {
 	return (
 		<>
 			<section>
-				<Title level={4} className='mb-4'>
-					Family Information
-				</Title>
 				<Form
-					labelCol={{ span: 6 }}
-					wrapperCol={{ span: 18 }}
 					form={form}
 					name='dynamic_form_complex'
-					style={{ maxWidth: 600 }}
-					autoComplete='off'
-					initialValues={{ items: [{}] }}
+					style={{
+						maxWidth: 800,
+						background: 'transparent',
+					}}
+					autoComplete='on'
+					initialValues={{
+						items: [
+							{
+								firstName: '',
+								middleName: '',
+								lastName: '',
+							},
+						],
+					}}
 				>
 					<Form.List name='items'>
 						{(fields, { add, remove }) => (
 							<div
-								style={{ display: 'flex', rowGap: 16, flexDirection: 'column' }}
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									background: 'transparent',
+								}}
 							>
 								{fields.map((field) => (
 									<Card
-										size='small'
-										title={`Item ${field.name + 1}`}
+										title={`Add Family Member ${field.name + 1}`}
+										className='my-3'
 										key={field.key}
 										extra={
 											<CloseOutlined
@@ -40,64 +59,87 @@ export const StepFamily = (): JSX.Element => {
 											/>
 										}
 									>
-										<Form.Item label='Add Family' name={[field.name, 'name']}>
-											<Input placeholder='Dependency or Heir' />
+										<Form.Item
+											label='Relationship'
+											name={[field.name, 'relation']}
+										>
+											<Select>
+												<SelectTrigger className='w-[200px]'>
+													<SelectValue placeholder='Select Family Member' />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectGroup>
+														<SelectLabel>Relation Type</SelectLabel>
+														<SelectItem value='spouse'>Spouse</SelectItem>
+														<SelectItem value='child'>Child</SelectItem>
+														<SelectItem value='dependent'>Dependant</SelectItem>
+														<SelectItem value='heir'>Heir</SelectItem>
+													</SelectGroup>
+												</SelectContent>
+											</Select>
 										</Form.Item>
-
-										{/* Nest Form.List */}
-										<Form.Item label='Dependency'>
-											<Form.List name={[field.name, 'list']}>
-												{(subFields, subOpt) => (
-													<div
-														style={{
-															display: 'flex',
-															flexDirection: 'column',
-															rowGap: 16,
-														}}
-													>
-														{subFields.map((subField) => (
-															<>
-																<Space key={subField.key}>
-																	<Form.Item
-																		name={[subField.name, 'firstName']}
-																	>
-																		<Input placeholder='First name' />
-																	</Form.Item>
-																</Space>
-																<Space key={subField.key}>
-																	<Form.Item
-																		name={[subField.name, 'middleName']}
-																	>
-																		<Input placeholder='Middle Name' />
-																	</Form.Item>
-																</Space>
-																<Space key={subField.key}>
-																	<Form.Item name={[subField.name, 'lastName']}>
-																		<Input placeholder='Last name' />
-																	</Form.Item>
-																	<CloseOutlined
-																		onClick={() => {
-																			subOpt.remove(subField.name)
-																		}}
-																	/>
-																</Space>
-															</>
-														))}
-														<Button
-															type='dashed'
-															onClick={() => subOpt.add()}
-															block
+										<div className='flex rounded-lg'>
+											{/* Nest Form.List */}
+											<Form.Item label='Dependency'>
+												<Form.List name={[field.name, 'list']}>
+													{(subFields, subOpt) => (
+														<div
+															style={{
+																display: 'flex',
+																flexDirection: 'column',
+															}}
 														>
-															+ Add Dependency/Heir
-														</Button>
-													</div>
-												)}
-											</Form.List>
-										</Form.Item>
+															{subFields.map((subField) => (
+																<>
+																	<Space key={subField.key}>
+																		<Form.Item
+																			name={[subField.name, 'firstName']}
+																		>
+																			<Input placeholder='First name' />
+																		</Form.Item>
+																	</Space>
+																	<Space key={subField.key}>
+																		<Form.Item
+																			name={[subField.name, 'middleName']}
+																		>
+																			<Input placeholder='Middle Name' />
+																		</Form.Item>
+																	</Space>
+																	<Space key={subField.key}>
+																		<Form.Item
+																			name={[subField.name, 'lastName']}
+																		>
+																			<Input placeholder='Last name' />
+																		</Form.Item>
+																		<CloseOutlined
+																			onClick={() => {
+																				subOpt.remove(subField.name)
+																			}}
+																		/>
+																	</Space>
+																</>
+															))}
+															<Button
+																type='dashed'
+																onClick={() => subOpt.add()}
+																block
+															>
+																+ Add Dependency/Heir
+															</Button>
+														</div>
+													)}
+												</Form.List>
+											</Form.Item>
+										</div>
 									</Card>
 								))}
 
-								<Button type='dashed' onClick={() => add()} block>
+								<Button
+									type='dashed'
+									className='my-6'
+									onClick={() => add()}
+									block
+								>
 									+ Add Family Member
 								</Button>
 							</div>

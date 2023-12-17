@@ -20,12 +20,13 @@ function Header() {
 		}
 	}
 	return (
-		<header className=' h-24 text-primary-black bg-background w-full flex justify-between pr-6 border-b border-violet-200 '>
-			<div className='flex flex-col justify-center pl-6'>
-				<span className='text-3xl font-bold'>
-					<LiaHippoSolid size={24} />
-				</span>{' '}
-				<span className='text-2xl font-thin'>Hippo Docs</span>
+		<header className='fixed top-0 h-12 text-primary-black bg-background w-full flex justify-between pr-6 border-b border-violet-200 '>
+			<div className='flex h-full items-center justify-center pl-6'>
+				<span className='text-xl font-thin'>Hippo Docs</span>
+				<LiaHippoSolid
+					size={20}
+					className='text-violet-800 flex items-center justify-center h-full mx-3'
+				/>
 			</div>
 			<ul className='flex items-center gap-3'>
 				<li>
