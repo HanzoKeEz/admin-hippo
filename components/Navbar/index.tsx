@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BiSolidNavigation, BiUserCircle } from 'react-icons/bi'
 import { LiaHippoSolid } from 'react-icons/lia'
+import { ThemeToggle } from '../theme-toggle'
 
 function NavBar() {
 	const router = useRouter()
@@ -11,7 +12,10 @@ function NavBar() {
 		return false
 	}
 	return (
-		<nav className='fixed max-md:bottom-0 h-[110px] z-[900] py-5 px-3 w-full border-t border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[225px] md:py-8 bg-primary-white'>
+		<nav className='fixed max-md:bottom-0 h-[110px] z-[900] py-5 px-3 w-full border-t border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[225px] md:py-8 '>
+			<div className='bg-blue-300'>
+				<ThemeToggle />
+			</div>
 			<ul className='flex space-x-12 items-center justify-center md:space-x-0 md:flex-col md:justify-start md:items-start md:space-y-4 md:mt-[50px] w-full'>
 				<li className='md:hover:bg-gray-300 md:w-full md:px-3 md:rounded-md md:flex md:py-2'>
 					<Link

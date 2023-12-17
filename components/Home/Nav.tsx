@@ -6,7 +6,7 @@ import { useState } from 'react'
 function Nav() {
 	const [showMobileNav, setShowMobileNav] = useState(false)
 	return (
-		<nav className='fixed top-0 h-24 text-primary-black bg-primary-white w-full z-[2]'>
+		<nav className='fixed top-0 h-24 text-primary-black  w-full z-[2]'>
 			<div className='flex w-full justify-between px-6  items-center  py-6'>
 				<p>
 					<span>

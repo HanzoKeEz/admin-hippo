@@ -7,7 +7,6 @@ import { Montserrat } from 'next/font/google'
 import { ReactElement, ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { AnimatePresence } from 'framer-motion'
-import { ConfigProvider, theme } from 'antd'
 
 const montserrat = Montserrat({
 	weight: ['400', '700', '600', '500'],
@@ -23,6 +22,7 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout
 }
+
 export default function App({
 	Component,
 	pageProps,

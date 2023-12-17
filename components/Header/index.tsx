@@ -20,7 +20,7 @@ function Header() {
 		}
 	}
 	return (
-		<header className=' h-24 text-primary-black bg-primary-white w-full flex justify-between pr-6 border-b border-violet-200 '>
+		<header className=' h-24 text-primary-black bg-background w-full flex justify-between pr-6 border-b border-violet-200 '>
 			<div className='flex flex-col justify-center pl-6'>
 				<span className='text-3xl font-bold'>
 					<LiaHippoSolid size={24} />
@@ -37,7 +37,7 @@ function Header() {
 						onLogout()
 					}}
 				>
-					Logout <span className='text-xl'>X</span>
+					Logout
 				</li>
 			</ul>
 		</header>

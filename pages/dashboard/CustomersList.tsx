@@ -67,53 +67,64 @@ const CustomersList = () => {
 			title: 'ID',
 			dataIndex: 'id',
 			width: 100,
+			className: 'font-semibold text-xs',
+			fixed: 'left',
 		},
 		{
 			title: 'First Name',
 			dataIndex: 'firstName',
-			width: 120,
+			width: 100,
+			className: 'capitalize font-semibold',
+			fixed: 'left',
 		},
 		{
 			title: 'Middle Name',
 			dataIndex: 'middleName',
-			width: 120,
+			width: 90,
+			className: 'capitalize font-semibold',
 		},
 		{
 			title: 'Last Name',
 			dataIndex: 'lastName',
 			width: 120,
+			className: 'font-semibold capitalize ',
 		},
 		{
 			title: 'Email',
 			dataIndex: 'email',
 			width: 120,
+			className: 'uppercase font-semibold text-[12px]',
 		},
 
 		{
 			title: 'Phone Number',
 			dataIndex: 'phone',
 			width: 120,
+			className: 'font-semibold',
 		},
 		{
 			title: 'Location',
 			dataIndex: 'location',
-			width: 120,
+			width: 160,
+			className: 'capitalize font-semibold',
 		},
 
 		{
 			title: 'City',
 			dataIndex: 'city',
 			width: 120,
+			className: 'capitalize font-semibold',
 		},
 		{
 			title: 'Role',
 			dataIndex: 'role',
 			width: 120,
+			className: 'capitalize font-semibold',
 		},
 		{
 			title: 'Status',
 			dataIndex: 'status',
-			width: 120,
+			width: 140,
 			render: (text, record: Customer) => {
 				if (record.status === 'pending') {
 					return (
@@ -148,7 +159,7 @@ const CustomersList = () => {
 					return (
 						<div className='flex gap-1'>
 							<span
-								className='underline cursor-pointer'
+								className='underline cursor-pointer font-semibold'
 								onClick={() =>
 									changeStatus({
 										...record,
@@ -159,7 +170,7 @@ const CustomersList = () => {
 								Reject
 							</span>
 							<span
-								className='underline cursor-pointer'
+								className='underline cursor-pointer font-semibold'
 								onClick={() =>
 									changeStatus({
 										...record,
@@ -213,8 +224,12 @@ const CustomersList = () => {
 	]
 
 	return (
-		<div>
-			<Table columns={columns} dataSource={customers} />
+		<div className='border-2 mt-6'>
+			<Table
+				columns={columns}
+				dataSource={customers}
+				scroll={{ x: 1500, y: 900 }}
+			/>
 		</div>
 	)
 }
