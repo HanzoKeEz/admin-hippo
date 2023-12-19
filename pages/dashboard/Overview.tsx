@@ -13,6 +13,7 @@ import { MdOutlineWorkspaces } from 'react-icons/md'
 import React, { useEffect, useState } from 'react'
 import { GetAllCustomers } from '@/apicalls/customers'
 import { message } from 'antd'
+import { CheckCheck, CircleEllipsis } from 'lucide-react'
 
 interface Customer {
 	id: string
@@ -58,7 +59,7 @@ function Overview() {
 			<div className='grid gap-4 grid-cols-4'>
 				<Card className='border-gray-400'>
 					<CardHeader className='overviewCard'>
-						<FaFileAlt size={24} className='text-primary-purple' />
+						<FaFileAlt size={28} className='text-primary-purple' />
 						<CardTitle className='text-base text-violet-800 font-semibold'>
 							{customers.length} Total Orders
 						</CardTitle>
@@ -66,7 +67,7 @@ function Overview() {
 				</Card>
 				<Card className='border-gray-400'>
 					<CardHeader className='overviewCard'>
-						<MdOutlineWorkspaces size={20} className='text-blue-500' />
+						<CircleEllipsis size={28} className='text-blue-500' />
 						<CardTitle className='text-base font-semibold text-blue-800 '>
 							{
 								customers.filter((customer) => customer.status == 'pending')
@@ -78,7 +79,7 @@ function Overview() {
 				</Card>
 				<Card className='border-gray-400'>
 					<CardHeader className='overviewCard'>
-						<MdOutlineWorkspaces size={24} className='text-green-500' />
+						<CheckCheck size={28} className='text-green-500' />
 						<CardTitle className='text-base font-semibold text-green-800 '>
 							{
 								customers.filter((customer) => customer.status == 'approved')
@@ -90,7 +91,7 @@ function Overview() {
 				</Card>
 				<Card className='border-gray-400'>
 					<CardHeader className='overviewCard'>
-						<TiCancelOutline size={24} className='text-red-500' />
+						<TiCancelOutline size={32} className='text-red-500' />
 						<CardTitle className='text-base font-semibold text-red-800 '>
 							{
 								customers.filter((customer) => customer.status == 'rejected')

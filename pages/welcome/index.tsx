@@ -37,7 +37,7 @@ function WelcomePage() {
 							<motion.span
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 0.8 }}
-								transition={{ delay: 1.7, duration: 0.55 }}
+								transition={{ delay: 1.7, duration: 0.65 }}
 								className='opacity-80 font-medium'
 							>
 								{user?.displayName}

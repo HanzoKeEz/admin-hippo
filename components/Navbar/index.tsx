@@ -13,8 +13,8 @@ function NavBar() {
 		return false
 	}
 	return (
-		<nav className='fixed max-md:bottom-0 h-[75px] z-[900] w-screen flex md:flex-col md:justify-between border border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[180px]'>
-			<ul className='flex bg-violet-100 items-center h-full justify-evenly w-full md:space-x-0 md:flex-col md:justify-start md:mt-6 md:space-y-4  '>
+		<nav className='fixed bg-gray-50 max-md:bottom-0 h-[75px] z-[900] w-screen flex md:flex-col md:justify-between border border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[180px]  '>
+			<ul className='flex items-center h-full justify-evenly w-full md:space-x-0 md:flex-col md:justify-start md:mt-6 md:space-y-4  '>
 				<li className=''>
 					<Link
 						href='/dashboard'

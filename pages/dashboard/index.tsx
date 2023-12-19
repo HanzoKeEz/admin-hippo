@@ -27,7 +27,7 @@ function DashboardPage() {
 				</div>
 				<Tabs defaultValue='overview' className='space-y-4'>
 					<TabsList>
-						<div className='flex bg-slate-500 text-violet-100 gap-3 p-2 mx-2 my-1 rounded-lg'>
+						<div className='flex bg-gray-500 text-violet-100 gap-3 p-2 mx-2 my-1 rounded-lg'>
 							<TabsTrigger className='tabsTrigger ' value='overview'>
 								Overview
 							</TabsTrigger>

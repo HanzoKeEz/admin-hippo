@@ -1,10 +1,8 @@
 import { Table, message } from 'antd'
 import React, { useEffect, useState } from 'react'
-import type { TableProps } from 'antd'
+
 import type { ColumnsType } from 'antd/es/table'
 import { GetAllCustomers, UpdateCustomer } from '@/apicalls/customers'
-import useAuthStore from '@/store/useAuthStore'
-import { Button } from '@/components/ui/button'
 
 interface Customer {
 	id: string

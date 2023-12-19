@@ -20,7 +20,7 @@ function Header() {
 		}
 	}
 	return (
-		<header className='fixed top-0 h-12 text-primary-black bg-background w-full flex justify-between pr-6 border-b border-violet-200 '>
+		<header className='fixed top-0 h-12 text-primary-black bg-background w-full flex justify-between pr-6 border-b border-violet-200 z-[900]'>
 			<div className='flex h-full items-center justify-center pl-6'>
 				<span className='text-xl font-thin'>Hippo Docs</span>
 				<LiaHippoSolid
