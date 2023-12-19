@@ -25,6 +25,8 @@ import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { toast } from 'react-toastify'
+import { BookA } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 type userData = {
 	name: string
 	email: string
@@ -182,7 +184,7 @@ function ProfilePage() {
 					</h1>
 					<button
 						onClick={onLogout}
-						className='py-2 px-5 bg-primary-purple text-primary-white rounded-2xl font-semibold hover:opacity-50'
+						className='hidden py-2 px-5 bg-primary-purple text-primary-white rounded-2xl font-semibold hover:opacity-50'
 					>
 						Logout
 					</button>
@@ -196,7 +198,7 @@ function ProfilePage() {
 							type='button'
 							onClick={handleChangeDetails}
 						>
-							{changeDetails ? 'done' : 'change'}
+							{changeDetails ? 'done' : 'Update Info'}
 						</button>
 						{/* profile details card */}
 					</div>
@@ -237,26 +239,15 @@ function ProfilePage() {
 						</div>
 					</div>
 				</form>
-				<button
-					className='bg-primary-white px-8 hover:opacity-70 py-3 h-[50px] shadow-[0px_0px_5px_rgba(0,0,0,0.25)] rounded-3xl flex space-x-3 items-center'
+				<Button
+					className='px-8 hover:opacity-70 py-3 h-[50px] shadow-[0px_0px_5px_rgba(0,0,0,0.25)] rounded-3xl flex space-x-3 items-center'
 					onClick={() => router.push('/create-customer')}
 				>
 					<span>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							height='24px'
-							viewBox='0 0 24 24'
-							width='24px'
-							fill='rgb(50,50,50)'
-						>
-							<path d='M0 0h24v24H0z' fill='none' />
-							<path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' />
-						</svg>
+						<BookA />
 					</span>
-					<span className='text-primary-black font-medium'>
-						Request a new service
-					</span>
-				</button>
+					<span className='font-medium'>Request new service</span>
+				</Button>
 				{/* All the user's customers will be displayed here */}
 				<div className='mt-[5rem]'>
 					<h2 className='md:text-3xl mb-6'>Service History</h2>
@@ -276,6 +267,7 @@ function ProfilePage() {
 									role={data.role}
 									location={data.location}
 									city={data.city}
+									state={data.state}
 									setSelectedCustomer={setSelectedCustomer}
 									showDeleteModal={setShowDeleteModal}
 									onEdit={onEdit}

@@ -29,9 +29,6 @@ function Header() {
 				/>
 			</div>
 			<ul className='flex items-center gap-3'>
-				<li>
-					<Link href='/profile'>User</Link>
-				</li>
 				<li
 					className='cursor-pointer'
 					onClick={() => {

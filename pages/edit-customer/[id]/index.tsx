@@ -62,7 +62,7 @@ function EditCustomerPage({ customer }: { customer: ICustomer }) {
 		phone: '',
 		location: '',
 		city: '',
-		// userRef: '',
+		state: '',
 		role: 'customer',
 		timestamp: '',
 	})

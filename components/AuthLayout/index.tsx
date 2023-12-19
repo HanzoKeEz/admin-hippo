@@ -35,7 +35,7 @@ function AuthLayout({ children }: { children: ReactNode }) {
 		<>
 			<Header />
 			<Navbar />
-			<main className='md:max-w-[calc(100%-225px)] mt-12 md:ml-auto md:mb-0 mb-[110px] w-full'>
+			<main className='md:max-w-[calc(100%-180px)] mt-16 px-3 md:ml-auto md:mb-0 mb-[110px] w-full'>
 				{children}
 			</main>
 		</>

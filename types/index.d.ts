@@ -24,12 +24,31 @@ interface ICustomer {
 	email: string
 	phone: string
 	location: string
-	role: string
 	city: string
+	state: string
 	timestamp: FieldValue | string | Timestamp
-	speciality?: string
+	role: string
 	status?: string
-	actions?: string
 }
 
-export { category, geoLocation, geoData, IUser, ICustomer }
+interface ICustomerInput {
+	step: number
+	firstName: string
+	middleName: string
+	lastName: string
+	email: string
+	phone: string
+	driversLicense: string
+	sex: string
+	ssn: string
+	birthDate: string
+	location: string
+	city: string
+	state: string
+	zip: string
+	timestamp: FieldValue | string | Timestamp
+	role: string
+	status?: string
+}
+
+export { category, geoLocation, geoData, IUser, ICustomer, ICustomerInput }

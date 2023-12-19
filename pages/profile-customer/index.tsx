@@ -36,8 +36,6 @@ function ProfileCustomerPage() {
 		email: '',
 		phone: '',
 		location: '',
-		speciality: '',
-		status: '',
 		timestamp: '',
 		// userRef: '',
 	})
@@ -96,7 +94,10 @@ function ProfileCustomerPage() {
 								Name:
 							</Label>
 							<Label>{customer?.firstName}</Label>
-							<Label>{customer?.middleName}.</Label>
+							{customer?.middleName.length === 0 ? null : (
+								<Label>{customer?.middleName}</Label>
+							)}
+
 							<Label>{customer?.lastName}</Label>
 						</div>
 						<div className='flex gap-2 items-center'>

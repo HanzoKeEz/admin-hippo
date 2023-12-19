@@ -1,21 +1,13 @@
-import { category, geoData, geoLocation, ICustomer } from '@/types'
+import { ICustomer } from '@/types'
 import {
 	ChangeEvent,
 	useState,
 	MouseEvent,
-	MouseEventHandler,
 	ChangeEventHandler,
 	FormEvent,
-	useEffect,
 	useRef,
 } from 'react'
-import {
-	getStorage,
-	ref,
-	uploadBytesResumable,
-	getDownloadURL,
-	uploadString,
-} from 'firebase/storage'
+
 import { toast } from 'react-toastify'
 import Head from 'next/head'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
@@ -25,6 +17,8 @@ import { useRouter } from 'next/router'
 import Spinner from '@/components/Spinner'
 import AuthLayout from '@/components/AuthLayout'
 import { Form } from 'antd'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 type formData = {
 	firstName: string
@@ -35,6 +29,8 @@ type formData = {
 	location: string
 	role: string
 	city: string
+	state: string
+	zip: string
 	status: string
 }
 
@@ -53,19 +49,11 @@ function CreateCustomerPage(): JSX.Element {
 		location: '',
 		role: 'customer',
 		city: '',
+		state: 'CA',
+		zip: '',
 		status: 'pending',
 	})
 	const [loading, setLoading] = useState<boolean>(false)
-
-	//Get user id | ref (whatever you want to call it) on first mount.
-
-	// useEffect(() => {
-	// 	if (user) {
-	// 		setFormData({ ...formData, userRef: user.uid })
-	// 	} else {
-	// 		router.push('/signin')
-	// 	}
-	// })
 
 	// form submission handler.
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -90,20 +78,7 @@ function CreateCustomerPage(): JSX.Element {
 			setLoading(false)
 		}
 	}
-	// function to store image in firebase
-	// async function storeImage(image: string) {
-	// 	const storage = getStorage()
-	// 	// put the actual user id important
-	// 	const fileName = `${formData.userRef}-${new Date().getTime()}`
-	// 	const storageRef = ref(storage, fileName)
-	// 	try {
-	// 		const snapShot = await uploadString(storageRef, image, 'data_url')
-	// 		const downloadUrl = await getDownloadURL(snapShot.ref)
-	// 		return downloadUrl
-	// 	} catch (err) {
-	// 		throw new Error()
-	// 	}
-	// }
+
 	function onMutate(
 		e: MouseEvent<HTMLButtonElement> | ChangeEvent<HTMLInputElement>
 	) {
@@ -120,7 +95,6 @@ function CreateCustomerPage(): JSX.Element {
 			}
 		}
 
-		// 	// for Booleans, Strings and Numbers.
 		setFormData((prevState) => ({
 			...prevState,
 			[id]: bool ?? value,
@@ -132,16 +106,16 @@ function CreateCustomerPage(): JSX.Element {
 			<Head>
 				<title>Create A new Customer</title>
 			</Head>
-			<section className='bg-primary-grey py-8  relative text-primary-black px-[5%]'>
-				<header className='mb-6 '>
+			<section className='bg-primary-grey flex flex-col items-center border border-primary-purple p-[5%] rounded-lg relative text-primary-black m-[10%]'>
+				<header className='mb-6'>
 					<h1 className='lg:text-3xl'>Add New Customer</h1>
 				</header>
 				<form className='space-y-5' onSubmit={handleSubmit}>
 					<div>
-						<label htmlFor='firstName' className='font-semibold mb-3 block'>
+						<Label htmlFor='firstName' className='font-semibold mb-3 block'>
 							First Name
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							value={formData.firstName}
 							id={'firstName'}
@@ -149,13 +123,13 @@ function CreateCustomerPage(): JSX.Element {
 							onChange={onMutate}
 							minLength={1}
 							maxLength={32}
-							className='input-box max-w-[320px]'
+							className='input-box min-w-[340px]'
 							required
 						/>
-						<label htmlFor='middleName' className='font-semibold mb-3 block'>
+						<Label htmlFor='middleName' className='font-semibold mb-3 block'>
 							Middle Name
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							value={formData.middleName}
 							id={'middleName'}
@@ -163,13 +137,12 @@ function CreateCustomerPage(): JSX.Element {
 							onChange={onMutate}
 							minLength={1}
 							maxLength={32}
-							className='input-box max-w-[320px]'
-							required
+							className='input-box min-w-[340px]'
 						/>
-						<label htmlFor='lastName' className='font-semibold mb-3 block'>
+						<Label htmlFor='lastName' className='font-semibold mb-3 block'>
 							Last Name
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							value={formData.lastName}
 							id={'lastName'}
@@ -177,13 +150,13 @@ function CreateCustomerPage(): JSX.Element {
 							onChange={onMutate}
 							minLength={1}
 							maxLength={32}
-							className='input-box max-w-[320px]'
+							className='input-box min-w-[340px]'
 							required
 						/>
-						<label htmlFor='email' className='font-semibold mb-3 block'>
+						<Label htmlFor='email' className='font-semibold mb-3 block'>
 							Email
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							id='email'
 							name='email'
@@ -191,31 +164,32 @@ function CreateCustomerPage(): JSX.Element {
 							value={formData.email}
 							minLength={1}
 							maxLength={50}
-							className='input-box max-w-[320px]'
+							className='input-box min-w-[340px]'
 							required
 						/>
 					</div>
 
 					<div>
-						<label htmlFor='location' className='font-semibold mb-3 block'>
+						<Label htmlFor='location' className='font-semibold mb-3 block'>
 							Street Address
-						</label>
-						<textarea
+						</Label>
+						<Input
+							type='text'
 							name='location'
 							id='location'
-							cols={35}
-							rows={2}
-							className='resize-none input-box max-w-[320px] px-2'
-							onChange={
-								onMutate as unknown as ChangeEventHandler<HTMLTextAreaElement>
-							}
+							onChange={onMutate}
+							value={formData.location}
+							minLength={1}
+							maxLength={50}
+							className='input-box min-w-[340px]'
+							required
 						/>
 					</div>
 					<div>
-						<label htmlFor='city' className='font-semibold mb-3 block'>
+						<Label htmlFor='city' className='font-semibold mb-3 block'>
 							City
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							value={formData.city}
 							id={'city'}
@@ -223,7 +197,41 @@ function CreateCustomerPage(): JSX.Element {
 							onChange={onMutate}
 							minLength={2}
 							maxLength={32}
-							className='input-box max-w-[320px]'
+							className='input-box min-w-[340px]'
+							required
+						/>
+					</div>
+					<div>
+						<Label htmlFor='state' className='font-semibold mb-3 block'>
+							State
+						</Label>
+						<Input
+							type='text'
+							defaultValue={'CA'}
+							value={formData.state}
+							id={'state'}
+							name={'state'}
+							onChange={onMutate}
+							minLength={2}
+							maxLength={32}
+							className='input-box min-w-[340px]'
+							placeholder='CA'
+							required
+						/>
+					</div>
+					<div>
+						<Label htmlFor='zip' className='font-semibold mb-3 block'>
+							ZipCode
+						</Label>
+						<Input
+							type='text'
+							value={formData.zip}
+							id={'zip'}
+							name={'zip'}
+							onChange={onMutate}
+							minLength={2}
+							maxLength={32}
+							className='input-box min-w-[340px]'
 							required
 						/>
 					</div>
@@ -232,7 +240,7 @@ function CreateCustomerPage(): JSX.Element {
 							type={'submit'}
 							className='primary-btn w-[80%] hover:bg-indigo-400 duration-200'
 						>
-							Create Listing
+							Add New Customer
 						</button>
 					</div>
 				</form>

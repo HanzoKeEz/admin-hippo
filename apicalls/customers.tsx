@@ -30,8 +30,8 @@ export const AddCustomer = async (payload: { id: string }) => {
 				message: error.message,
 			}
 		}
-		// handle case where error is not an instance of Error
 	}
+	// handle case where error is not an instance of Error
 }
 
 export const CheckIfCustomerAccountIsApplied = async (id: string) => {

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { BiSolidNavigation, BiUserCircle } from 'react-icons/bi'
+import { BiUserCircle } from 'react-icons/bi'
 import { LiaHippoSolid } from 'react-icons/lia'
-import { ThemeToggle } from '../theme-toggle'
+import { LayoutDashboard } from 'lucide-react'
+import UserButton from '../user-button'
 
 function NavBar() {
 	const router = useRouter()
@@ -12,57 +13,60 @@ function NavBar() {
 		return false
 	}
 	return (
-		<nav className='fixed max-md:bottom-0 h-[100px] z-[900] py-5 px-3 w-full border-t border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[225px] md:py-8 '>
-			<ul className='flex space-x-12 items-center justify-center md:space-x-0 md:flex-col md:justify-start md:items-start md:space-y-4 md:mt-[50px] w-full'>
-				<li className='md:hover:bg-gray-300 md:w-full md:px-3 md:rounded-md md:flex md:py-2'>
+		<nav className='fixed max-md:bottom-0 h-[75px] z-[900] w-screen flex md:flex-col md:justify-between border border-[#aaaeaa] md:border-r md:border-t-0 md:left-0  md:h-screen md:w-[180px]'>
+			<ul className='flex bg-violet-100 items-center h-full justify-evenly w-full md:space-x-0 md:flex-col md:justify-start md:mt-6 md:space-y-4  '>
+				<li className=''>
 					<Link
 						href='/dashboard'
-						className={`flex flex-col space-y-2 items-center justify-center md:space-x-4 md:flex-row md:space-y-0 ${
-							pathMatchRoute('/dashboard') ? 'text-gray-900' : 'text-gray-500'
+						className={`sidebarLink ${
+							pathMatchRoute('/dashboard')
+								? 'text-gray-900 font-semibold'
+								: 'text-gray-500 font-semibold'
 						}`}
 					>
-						<BiSolidNavigation
-							className='max-md:hover:scale-100 transition-all ease-out duration-300'
+						<LayoutDashboard
+							className='hover:scale-125 transition-all ease-out duration-300'
 							size={24}
 						/>
 
 						<span>Dashboard</span>
 					</Link>
 				</li>
+				<li className='  '>
+					<Link
+						href='/create-customer'
+						className={`sidebarLink ${
+							pathMatchRoute('/create-customer')
+								? 'text-gray-900 font-semibold'
+								: 'text-gray-500 font-semibold'
+						}`}
+					>
+						<LiaHippoSolid
+							className='max-md:hover:scale-125 transition-all ease-out duration-300'
+							size={24}
+						/>
+						<span>Customers</span>
+					</Link>
+				</li>
 
-				<li className='md:hover:bg-gray-300 md:w-full md:px-3 md:rounded-md md:flex md:py-2'>
+				<li className=''>
 					<Link
 						href='/profile-customer'
-						className={`flex flex-col space-y-2 items-center justify-center md:space-x-4 md:flex-row md:space-y-0 ${
+						className={`sidebarLink ${
 							pathMatchRoute('/profile-customer')
-								? 'text-gray-900'
-								: 'text-gray-500'
+								? 'text-gray-900 font-semibold'
+								: 'text-gray-500 font-semibold'
 						}`}
 					>
 						<BiUserCircle
-							className='max-md:hover:scale-110 transition-all ease-out duration-300'
+							className='max-md:hover:scale-125 transition-all ease-out duration-300'
 							size={24}
 						/>
 						<span>Profile</span>
 					</Link>
 				</li>
-				<li className='md:hover:bg-gray-300 md:w-full md:px-3 md:rounded-md md:flex md:py-2'>
-					<Link
-						href='/create-customer'
-						className={`flex flex-col space-y-2 items-center justify-center md:space-x-4 md:flex-row md:space-y-0 ${
-							pathMatchRoute('/create-customer')
-								? 'text-gray-900'
-								: 'text-gray-500'
-						}`}
-					>
-						<BiUserCircle
-							className='max-md:hover:scale-110 transition-all ease-out duration-300'
-							size={24}
-						/>
-						<span>Customer Profile</span>
-					</Link>
-				</li>
 			</ul>
+			<UserButton />
 		</nav>
 	)
 }

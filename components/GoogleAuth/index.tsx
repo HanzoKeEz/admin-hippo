@@ -5,6 +5,7 @@ import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
+import { Button } from '../ui/button'
 type props = {
 	pathname: 'in' | 'up'
 }
@@ -41,8 +42,8 @@ function GoogleAuth({ pathname }: props) {
 
 	return (
 		<div className='flex flex-col  space-y-3'>
-			<small className='text-gray-500 text-sm'>sign {pathname} with</small>
-			<button
+			<small className='text-gray-500 text-sm'>Or sign {pathname} with</small>
+			<Button
 				onClick={handleGoogleClick}
 				type='button'
 				className='relative h-[50px] w-[50px] hover:scale-110 duration-300 ease-out flex items-center justify-center rounded-full shadow-lg bg-[#fff] p-3'
@@ -53,7 +54,7 @@ function GoogleAuth({ pathname }: props) {
 					width={25}
 					height={25}
 				/>
-			</button>
+			</Button>
 		</div>
 	)
 }

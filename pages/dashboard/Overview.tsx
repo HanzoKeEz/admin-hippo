@@ -1,4 +1,3 @@
-import { PiCheckFat } from 'react-icons/pi'
 import { TiCancelOutline } from 'react-icons/ti'
 
 import {
@@ -54,71 +53,63 @@ function Overview() {
 	}, [])
 
 	return (
-		<div className='container border-2'>
-			<div className='flex items-center'>
-				<div className='flex w-full justify-evenly m-6'>
-					<Card>
-						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-							<CardTitle className='text-sm font-medium'>
-								Total Orders Requested
-							</CardTitle>
-							<FaFileAlt />
-						</CardHeader>
-						<CardContent>
-							<div className='text-xl flex justify-center'>
-								{customers.length} Total{' '}
-							</div>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-							<CardTitle className='text-sm font-medium text-blue-500 flex flex-col justify-center items-center gap-6'>
-								<MdOutlineWorkspaces size={20} className='text-blue-500' />
-								{
-									customers.filter((customer) => customer.status == 'pending')
-										.length
-								}{' '}
-								Pending
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<div className='text-xl font-bold'></div>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-							<CardTitle className='text-sm font-medium text-green-500 flex flex-col justify-center items-center gap-6'>
-								<MdOutlineWorkspaces size={20} className='text-green-500' />
-								{
-									customers.filter((customer) => customer.status == 'approved')
-										.length
-								}{' '}
-								Approved
-							</CardTitle>
-						</CardHeader>
-					</Card>
-					<Card>
-						<CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-							<CardTitle className='text-sm font-medium text-red-500 flex flex-col justify-center items-center gap-6'>
-								<TiCancelOutline size={24} className='text-red-500' />
-								{
-									customers.filter((customer) => customer.status == 'rejected')
-										.length
-								}{' '}
-								Need Attention
-							</CardTitle>
-						</CardHeader>
-					</Card>
-				</div>
+		<div className='container rounded-sm pb-16'>
+			{/* <div className='flex items-center'> */}
+			<div className='grid gap-4 grid-cols-4'>
+				<Card className='border-gray-400'>
+					<CardHeader className='overviewCard'>
+						<FaFileAlt size={24} className='text-primary-purple' />
+						<CardTitle className='text-base text-violet-800 font-semibold'>
+							{customers.length} Total Orders
+						</CardTitle>
+					</CardHeader>
+				</Card>
+				<Card className='border-gray-400'>
+					<CardHeader className='overviewCard'>
+						<MdOutlineWorkspaces size={20} className='text-blue-500' />
+						<CardTitle className='text-base font-semibold text-blue-800 '>
+							{
+								customers.filter((customer) => customer.status == 'pending')
+									.length
+							}{' '}
+							Pending
+						</CardTitle>
+					</CardHeader>
+				</Card>
+				<Card className='border-gray-400'>
+					<CardHeader className='overviewCard'>
+						<MdOutlineWorkspaces size={24} className='text-green-500' />
+						<CardTitle className='text-base font-semibold text-green-800 '>
+							{
+								customers.filter((customer) => customer.status == 'approved')
+									.length
+							}{' '}
+							Approved
+						</CardTitle>
+					</CardHeader>
+				</Card>
+				<Card className='border-gray-400'>
+					<CardHeader className='overviewCard'>
+						<TiCancelOutline size={24} className='text-red-500' />
+						<CardTitle className='text-base font-semibold text-red-800 '>
+							{
+								customers.filter((customer) => customer.status == 'rejected')
+									.length
+							}{' '}
+							Need Attention
+						</CardTitle>
+					</CardHeader>
+				</Card>
 			</div>
-			<div className='m-6 grid gap-4 md:grid-cols-2 lg:grid-cols-7'>
-				<Card className='col-span-4'>
+			{/* </div> */}
+			<div className='mt-6 grid gap-4 md:grid-cols-12'>
+				<Card className='col-span-6'>
 					<CardHeader>
 						<CardTitle>Overview</CardTitle>
 					</CardHeader>
 					<CardContent className='pl-2'>{/* <Overview /> */}</CardContent>
 				</Card>
-				<Card className='col-span-3'>
+				<Card className='col-span-6 border-gray-400'>
 					<CardHeader>
 						<CardTitle>Most Recent Orders</CardTitle>
 						<CardDescription>
