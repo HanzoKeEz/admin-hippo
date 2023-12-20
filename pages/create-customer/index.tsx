@@ -26,6 +26,10 @@ type formData = {
 	lastName: string
 	email: string
 	phone: string
+	driversLicense: string
+	birthDate: string
+	sex: string
+	ssn: string
 	location: string
 	role: string
 	city: string
@@ -46,6 +50,10 @@ function CreateCustomerPage(): JSX.Element {
 		lastName: '',
 		email: '',
 		phone: '',
+		driversLicense: '',
+		birthDate: '',
+		sex: '',
+		ssn: '',
 		location: '',
 		role: 'customer',
 		city: '',
@@ -106,13 +114,13 @@ function CreateCustomerPage(): JSX.Element {
 			<Head>
 				<title>Create A new Customer</title>
 			</Head>
-			<section className='bg-primary-grey flex flex-col items-center border border-primary-purple p-[5%] rounded-lg relative text-primary-black m-[10%]'>
+			<section className='bg-neutral-700 flex flex-col items-center border border-gray-400 p-6 rounded-lg relative text-neutral-300'>
 				<header className='mb-6'>
 					<h1 className='lg:text-3xl'>Add New Customer</h1>
 				</header>
 				<form className='space-y-5' onSubmit={handleSubmit}>
 					<div>
-						<Label htmlFor='firstName' className='font-semibold mb-3 block'>
+						<Label htmlFor='firstName' className='font-thin mb-3 block'>
 							First Name
 						</Label>
 						<Input
@@ -126,7 +134,7 @@ function CreateCustomerPage(): JSX.Element {
 							className='input-box min-w-[340px]'
 							required
 						/>
-						<Label htmlFor='middleName' className='font-semibold mb-3 block'>
+						<Label htmlFor='middleName' className='font-thin mb-3 block'>
 							Middle Name
 						</Label>
 						<Input
@@ -139,7 +147,7 @@ function CreateCustomerPage(): JSX.Element {
 							maxLength={32}
 							className='input-box min-w-[340px]'
 						/>
-						<Label htmlFor='lastName' className='font-semibold mb-3 block'>
+						<Label htmlFor='lastName' className='font-thin mb-3 block'>
 							Last Name
 						</Label>
 						<Input
@@ -153,7 +161,7 @@ function CreateCustomerPage(): JSX.Element {
 							className='input-box min-w-[340px]'
 							required
 						/>
-						<Label htmlFor='email' className='font-semibold mb-3 block'>
+						<Label htmlFor='email' className='font-thin mb-3 block'>
 							Email
 						</Label>
 						<Input
@@ -167,10 +175,79 @@ function CreateCustomerPage(): JSX.Element {
 							className='input-box min-w-[340px]'
 							required
 						/>
+						<Label htmlFor='phone' className='font-thin mb-3 block'>
+							Phone
+						</Label>
+						<Input
+							type='text'
+							id='phone'
+							name='phone'
+							onChange={onMutate}
+							value={formData.phone}
+							minLength={1}
+							maxLength={50}
+							className='input-box min-w-[340px]'
+							required
+						/>
 					</div>
 
 					<div>
-						<Label htmlFor='location' className='font-semibold mb-3 block'>
+						<Label htmlFor='driversLicense' className='font-thin mb-3 block'>
+							Drivers License
+						</Label>
+						<Input
+							type='text'
+							id='driversLicense'
+							name='driversLicense'
+							onChange={onMutate}
+							value={formData.driversLicense}
+							minLength={1}
+							maxLength={50}
+							className='input-box min-w-[340px]'
+							required
+						/>
+						<Label htmlFor='birthDate' className='font-thin mb-3 block'>
+							Date of Birth
+						</Label>
+						<Input
+							type='date'
+							id='birthDate'
+							name='birthDate'
+							onChange={onMutate}
+							value={formData.birthDate}
+							minLength={1}
+							maxLength={50}
+							className='input-box min-w-[340px]'
+							required
+						/>
+						<Label htmlFor='sex' className='font-thin mb-3 block'>
+							Sex
+						</Label>
+						<Input
+							type='text'
+							id='sex'
+							name='sex'
+							onChange={onMutate}
+							value={formData.sex}
+							minLength={1}
+							maxLength={50}
+							className='input-box min-w-[340px]'
+							required
+						/>
+						<Label htmlFor='ssn' className='font-thin mb-3 block'>
+							Social Security Number
+						</Label>
+						<Input
+							type='text'
+							className='input-box mb-3 block'
+							id='ssn'
+							name='ssn'
+							onChange={onMutate}
+							value={formData.ssn}
+							minLength={1}
+							maxLength={50}
+						/>
+						<Label htmlFor='location' className='font-thin mb-3 block'>
 							Street Address
 						</Label>
 						<Input
@@ -186,7 +263,7 @@ function CreateCustomerPage(): JSX.Element {
 						/>
 					</div>
 					<div>
-						<Label htmlFor='city' className='font-semibold mb-3 block'>
+						<Label htmlFor='city' className='font-thin mb-3 block'>
 							City
 						</Label>
 						<Input
@@ -202,7 +279,7 @@ function CreateCustomerPage(): JSX.Element {
 						/>
 					</div>
 					<div>
-						<Label htmlFor='state' className='font-semibold mb-3 block'>
+						<Label htmlFor='state' className='font-thin mb-3 block'>
 							State
 						</Label>
 						<Input
@@ -220,7 +297,7 @@ function CreateCustomerPage(): JSX.Element {
 						/>
 					</div>
 					<div>
-						<Label htmlFor='zip' className='font-semibold mb-3 block'>
+						<Label htmlFor='zip' className='font-thin mb-3 block'>
 							ZipCode
 						</Label>
 						<Input
@@ -238,7 +315,7 @@ function CreateCustomerPage(): JSX.Element {
 					<div className='pt-6'>
 						<button
 							type={'submit'}
-							className='primary-btn w-[80%] hover:bg-indigo-400 duration-200'
+							className='primary-btn w-full hover:bg-violet-300 shadow-lg shadow-neutral-800 hover:text-neutral-700 hover:font-medium duration-200'
 						>
 							Add New Customer
 						</button>

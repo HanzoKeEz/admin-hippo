@@ -4,6 +4,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import WelcomeHippo from '@/public/hippopurple.png'
+
 function WelcomePage() {
 	const user = useAuthStore((state) => state.user)
 	const router = useRouter()
@@ -50,7 +52,7 @@ function WelcomePage() {
 						transition={{ delay: 2.3, duration: 0.65 }}
 					>
 						<Image
-							src={'/hippopurple.png'}
+							src={WelcomeHippo}
 							width={600}
 							height={600}
 							className='max-w-[500px] h-[300px] object-contain w-[80%]'

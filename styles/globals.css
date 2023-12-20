@@ -6,7 +6,7 @@
 		--background: 0 0% 100%;
 		--foreground: 224 71.4% 4.1%;
 
-		--card: 0 0% 100%;
+		--card: 224 0% 100%;
 		--card-foreground: 224 71.4% 4.1%;
 
 		--popover: 0 0% 100%;
@@ -78,34 +78,24 @@
 		@apply cursor-pointer bg-primary-purple rounded-2xl py-[0.85rem] px-8 text-white text-xl flex items-center justify-center;
 	}
 	.input-box {
-		@apply w-full my-2 outline-none focus:border-2 active:border-2 border-gray-400 shadow-[1px_1px_6px_1px_rgba(0,0,0,0.2)]  block rounded-[14px] py-4 pl-12 pr-6 bg-primary-white;
+		@apply w-full my-2 outline-none focus:border-2 active:border-2 border-gray-400 text-neutral-600 shadow-[1px_1px_6px_1px_rgba(0,0,0,0.1)]  block rounded-[14px] py-4 pl-12 pr-6;
 	}
 	.input-invalid {
-		@apply text-red-500 placeholder:text-red-500 border-red-500  border-2;
+		@apply text-red-400 placeholder:text-red-400 border-red-400  border-2;
 	}
 	.input-error {
-		@apply text-red-500  font-medium;
+		@apply text-red-400  font-medium;
 	}
-	.listing-label {
-		@apply font-semibold block;
-	}
-	.listing-button {
-		@apply px-12 py-[0.9rem] bg-primary-white rounded-2xl flex items-center justify-center shadow-[0_0_5px_rgba(0,0,0,0.2)];
-	}
-	.listing-button-active {
-		@apply bg-primary-purple text-primary-white;
-	}
-	.listing-input {
-		@apply border outline-none;
-	}
+
 	.tabsTrigger {
-		@apply cursor-pointer selection:bg-slate-800 focus:bg-primary-purple bg-slate-700 hover:bg-primary-purple rounded-lg py-1 px-2 hover:text-primary-white ease-linear duration-200 border-primary-white border;
+		@apply cursor-pointer bg-neutral-600 hover:bg-gray-600 rounded-lg py-1 px-2   duration-200 border-neutral-500 border text-sm font-thin;
 	}
-	.sidebarLink {
-		@apply flex flex-col items-center justify-center space-y-1 text-sm hover:font-semibold transition-all ease-out duration-200 md:justify-start md:w-[160px] md:px-3 md:rounded-sm md:flex md:py-2 md:space-x-6 md:flex-row md:space-y-0 md:hover:bg-primary-purple md:hover:text-gray-100 hover:scale-110;
+	.navbarLink {
+		@apply cursor-pointer w-36 flex items-center h-full justify-center md:justify-start text-sm hover:scale-110 hover:font-medium hover:text-violet-400 active:text-violet-500 ease-out duration-500 gap-3;
 	}
+
 	.overviewCard {
-		@apply border-2 justify-evenly flex text-center gap-3 items-center rounded-lg h-full space-y-0 pb-2 mb-6;
+		@apply justify-evenly flex text-center text-neutral-300 items-center rounded-lg;
 	}
 }
 

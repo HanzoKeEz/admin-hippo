@@ -7,13 +7,13 @@ import Link from 'next/link'
 function UserButton() {
 	const user = useAuthStore((state) => state.user)
 	return (
-		<div className='h-24 md:flex md:flex-none hidden items-center w-[175px] bottom-0 fixed left-0'>
+		<div className='rounded-md shadow-xl shadow-neutral-600'>
 			<Link
 				href='/profile'
-				className='flex cursor-pointer w-full justify-end items-center gap-3 bg-primary-purple/70 p-3 rounded-lg'
+				className='flex cursor-pointer w-full justify-end gap-2 items-center px-2 py-1 bg-violet-400 text-neutral-700 rounded-sm'
 			>
 				<Label>{user?.displayName}</Label>
-				<Avatar className='cursor-pointer ease-in-out '>
+				<Avatar className='cursor-pointer ease-in-out border border-neutral-600'>
 					<AvatarImage
 						src={user?.photoURL as string}
 						alt={user?.displayName as string}

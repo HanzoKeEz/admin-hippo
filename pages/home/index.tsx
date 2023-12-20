@@ -24,7 +24,7 @@ function HomePage() {
 				{/* Testimonals */}
 				<Testimonals testimonials={testimonials} />
 			</main>
-			<footer className='bg-primary-purple py-2 px-3 text-primary-white text-center'>
+			<footer className='bg-neutral-400 py-2 px-3 text-primary-white text-center'>
 				<p>{new Date().getFullYear()}</p>
 			</footer>
 		</>

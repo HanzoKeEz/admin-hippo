@@ -222,11 +222,15 @@ const CustomersList = () => {
 	]
 
 	return (
-		<div className='border-2 mt-6'>
+		<div className='mt-6 '>
 			<Table
 				columns={columns}
 				dataSource={customers}
 				scroll={{ x: 1500, y: 900 }}
+				style={{
+					border: '2px solid black',
+					borderRadius: '10px',
+				}}
 			/>
 		</div>
 	)

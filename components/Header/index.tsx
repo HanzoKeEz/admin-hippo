@@ -20,17 +20,17 @@ function Header() {
 		}
 	}
 	return (
-		<header className='fixed top-0 h-12 text-primary-black bg-background w-full flex justify-between pr-6 border-b border-violet-200 z-[900]'>
-			<div className='flex h-full items-center justify-center pl-6'>
-				<span className='text-xl font-thin'>Hippo Docs</span>
+		<header className='fixed top-0 h-14 text-primary-black flex justify-end right-0 pr-6  w-screen rounded-b-md md:w-[calc(100%-200px)] bg-neutral-700 border-violet-200 z-[800]'>
+			<div className='flex h-full items-center justify-center pl-6 md:hidden'>
+				<span className='text-2xl text-neutral-200 font-thin'>Hippo Docs</span>
 				<LiaHippoSolid
-					size={20}
-					className='text-violet-800 flex items-center justify-center h-full mx-3'
+					size={28}
+					className='text-violet-400 flex items-center justify-center h-full mx-3'
 				/>
 			</div>
 			<ul className='flex items-center gap-3'>
 				<li
-					className='cursor-pointer'
+					className='cursor-pointer text-neutral-200 hover:text-violet-400 transition-all ease-out duration-300'
 					onClick={() => {
 						onLogout()
 					}}
