@@ -20,8 +20,8 @@ function Header() {
 		}
 	}
 	return (
-		<header className='fixed top-0 h-14 text-primary-black flex justify-end right-0 pr-6  w-screen rounded-b-md md:w-[calc(100%-200px)] bg-neutral-700 border-violet-200 z-[800]'>
-			<div className='flex h-full items-center justify-center pl-6 md:hidden'>
+		<header className='fixed top-0 h-14 text-primary-black flex justify-end right-0 pr-6 w-screen rounded-b-md bg-neutral-800 '>
+			<div className='flex h-full items-center justify-center md:hidden'>
 				<span className='text-2xl text-neutral-200 font-thin'>Hippo Docs</span>
 				<LiaHippoSolid
 					size={28}

@@ -73,7 +73,6 @@ const CustomersList = () => {
 			dataIndex: 'firstName',
 			width: 100,
 			className: 'capitalize font-semibold',
-			fixed: 'left',
 		},
 		{
 			title: 'Middle Name',

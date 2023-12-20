@@ -19,6 +19,7 @@ import AuthLayout from '@/components/AuthLayout'
 import { Form } from 'antd'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
 
 type formData = {
 	firstName: string
@@ -114,9 +115,11 @@ function CreateCustomerPage(): JSX.Element {
 			<Head>
 				<title>Create A new Customer</title>
 			</Head>
-			<section className='bg-neutral-700 flex flex-col items-center border border-gray-400 p-6 rounded-lg relative text-neutral-300'>
+			<section className='bg-neutral-800 flex flex-col items-center border border-gray-400 p-6 m-3 rounded-lg relative text-neutral-300'>
 				<header className='mb-6'>
-					<h1 className='lg:text-3xl'>Add New Customer</h1>
+					<h1 className='text-violet-200 font-thin text-2xl'>
+						Add New Customer
+					</h1>
 				</header>
 				<form className='space-y-5' onSubmit={handleSubmit}>
 					<div>
@@ -313,12 +316,12 @@ function CreateCustomerPage(): JSX.Element {
 						/>
 					</div>
 					<div className='pt-6'>
-						<button
+						<Button
 							type={'submit'}
-							className='primary-btn w-full hover:bg-violet-300 shadow-lg shadow-neutral-800 hover:text-neutral-700 hover:font-medium duration-200'
+							className='w-full bg-violet-400 font-light hover:bg-violet-300 shadow-lg shadow-neutral-800 hover:text-neutral-700 hover:font-medium duration-200'
 						>
 							Add New Customer
-						</button>
+						</Button>
 					</div>
 				</form>
 			</section>

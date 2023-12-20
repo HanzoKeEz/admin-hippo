@@ -54,7 +54,7 @@ function Overview() {
 	}, [])
 
 	return (
-		<div className='container rounded-sm pb-16 bg-neutral-700'>
+		<div className='rounded-sm'>
 			{/* <div className='flex items-center'> */}
 			<div className='grid gap-4 grid-cols-4'>
 				<Card className='border-gray-500'>
