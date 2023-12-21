@@ -18,7 +18,7 @@ function DashboardPage() {
 					</div>
 				</div>
 			</div>
-			<div className='space-y-4 p-3 bg-neutral-800 rounded-lg text-neutral-200'>
+			<div className='space-y-4 p-3  rounded-lg border text-neutral-200'>
 				<div className='flex items-center pl-3 justify-between'>
 					<h2 className='text-lg font-normal tracking-wider text-neutral-400/80'>
 						DASHBOARD

@@ -20,7 +20,7 @@ function ForgotPasswordPage() {
 		}
 	}
 	return (
-		<main className='w-full bg-primary-grey min-h-screen relative'>
+		<main className='w-full min-h-screen relative'>
 			<Link
 				href='/'
 				className='absolute top-[30px] left-[30px] fill-[#fff] text-lg mb-4 px-3 py-2'

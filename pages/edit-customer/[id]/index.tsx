@@ -170,7 +170,7 @@ function EditCustomerPage({ customer }: { customer: ICustomer }) {
 	}
 	return (
 		<>
-			<section className='bg-primary-grey py-8  relative text-primary-black px-[5%]'>
+			<section className='bg-neutral-700 py-8  relative text-primary-black px-[5%]'>
 				<header className='mb-6 '>
 					<h1 className='lg:text-4xl'>Edit Customer</h1>
 				</header>
