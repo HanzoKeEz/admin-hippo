@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { LiaHippoSolid } from 'react-icons/lia'
+import { buttonVariants } from '../ui/button'
 
 import { useState } from 'react'
 function Nav() {
@@ -24,7 +25,7 @@ function Nav() {
 					<li>
 						<Link
 							href={'/signin'}
-							className='py-[0.55rem] px-8 bg-primary-purple text-primary-white font-medium rounded-md'
+							className='py-[0.50rem] px-8 bg-primary-purple text-primary-white font-medium rounded-md'
 						>
 							Login
 						</Link>

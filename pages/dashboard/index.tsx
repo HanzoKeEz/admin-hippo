@@ -8,25 +8,11 @@ import CreateCustomerPage from '../create-customer'
 function DashboardPage() {
 	return (
 		<div className='w-full rounded-lg min-h-screen'>
-			<div className='flex-col md:flex'>
-				<div className='flex items-center px-3'>
-					{/* <TeamSwitcher />
-						<MainNav className='mx-6' /> */}
-					<div className='ml-auto flex items-center space-x-4'>
-						{/* <Search />
-							<UserNav /> */}
-					</div>
-				</div>
-			</div>
 			<div className='space-y-4 p-3  rounded-lg border text-neutral-200'>
 				<div className='flex items-center pl-3 justify-between'>
 					<h2 className='text-lg font-normal tracking-wider text-neutral-400/80'>
 						DASHBOARD
 					</h2>
-					<div className='flex items-center space-x-2'>
-						{/* <CalendarDateRangePicker />
-							<Button>Download</Button> */}
-					</div>
 				</div>
 				<Tabs defaultValue='overview' className=''>
 					<TabsList>

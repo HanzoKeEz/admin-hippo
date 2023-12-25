@@ -1,5 +1,3 @@
-import { TiCancelOutline } from 'react-icons/ti'
-
 import {
 	Card,
 	CardContent,
@@ -7,13 +5,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
-import { FaFileAlt } from 'react-icons/fa'
-import { FcApprove, FcDisapprove } from 'react-icons/fc'
-import { MdOutlineWorkspaces } from 'react-icons/md'
 import React, { useEffect, useState } from 'react'
 import { GetAllCustomers } from '@/apicalls/customers'
 import { message } from 'antd'
 import { CheckCheck, CircleEllipsis, FileStack, XCircle } from 'lucide-react'
+import { BsStack } from 'react-icons/bs'
 
 interface Customer {
 	id: string
@@ -57,50 +53,62 @@ function Overview() {
 		<div className='rounded-sm'>
 			{/* <div className='flex items-center'> */}
 			<div className='grid gap-4 grid-cols-4'>
-				<Card className='border-gray-500'>
-					<CardHeader className='overviewCard'>
-						<FileStack size={28} className='text-violet-700' />
-						<CardTitle className='text-xs w-full font-thin pt-1'>
-							( {customers.length} ) Total Orders
+				<Card className=''>
+					<CardHeader className='flex flex-col justify-center items-center w-full h-full'>
+						<BsStack size={28} className='text-violet-700' />
+						<CardTitle className='text-xs text-neutral-300 text-center font-extralight'>
+							<span className='underline text-purple-400 font-semibold'>
+								( {customers.length} )
+							</span>{' '}
+							Total Orders
 						</CardTitle>
 					</CardHeader>
 				</Card>
 				<Card className='border-gray-400'>
-					<CardHeader className='overviewCard'>
-						<CircleEllipsis size={24} className='text-blue-800' />
-						<CardTitle className='text-xs w-full font-thin pt-1'>
-							({' '}
-							{
-								customers.filter((customer) => customer.status == 'pending')
-									.length
-							}{' '}
-							) Pending
+					<CardHeader className='flex flex-col justify-center items-center w-full h-full'>
+						<CircleEllipsis size={24} className='text-blue-400' />
+						<CardTitle className='text-xs text-neutral-300 text-center font-extralight'>
+							<span className='underline text-blue-400 font-semibold'>
+								({' '}
+								{
+									customers.filter((customer) => customer.status == 'pending')
+										.length
+								}{' '}
+								)
+							</span>{' '}
+							Pending
 						</CardTitle>
 					</CardHeader>
 				</Card>
 				<Card className='border-gray-400'>
-					<CardHeader className='overviewCard'>
+					<CardHeader className='flex flex-col justify-center items-center w-full h-full'>
 						<CheckCheck size={24} className='text-green-500' />
-						<CardTitle className='text-xs w-full font-thin pt-1'>
-							({' '}
-							{
-								customers.filter((customer) => customer.status == 'approved')
-									.length
-							}{' '}
-							) Approved
+						<CardTitle className='text-xs text-neutral-300 text-center font-extralight'>
+							<span className='underline text-green-400 font-semibold'>
+								({' '}
+								{
+									customers.filter((customer) => customer.status == 'approved')
+										.length
+								}{' '}
+								)
+							</span>{' '}
+							Approved
 						</CardTitle>
 					</CardHeader>
 				</Card>
 				<Card className='border-gray-400'>
-					<CardHeader className='overviewCard'>
+					<CardHeader className='flex flex-col justify-center items-center w-full h-full'>
 						<XCircle size={24} className='text-red-500' />
-						<CardTitle className='text-xs w-full font-thin pt-1'>
-							({' '}
-							{
-								customers.filter((customer) => customer.status == 'rejected')
-									.length
-							}{' '}
-							) Need Attention
+						<CardTitle className='text-xs text-neutral-300 text-center font-extralight'>
+							<span className='underline text-red-500 font-semibold'>
+								({' '}
+								{
+									customers.filter((customer) => customer.status == 'rejected')
+										.length
+								}{' '}
+								)
+							</span>{' '}
+							Need Attention
 						</CardTitle>
 					</CardHeader>
 				</Card>

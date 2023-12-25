@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import Hippo from '../../public/purphip.png'
+import { Label } from '@/components/ui/label'
 
 function SigninPage() {
 	const router = useRouter()
@@ -58,7 +59,7 @@ function SigninPage() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.8 }}
-				className='bg-primary-grey grid grid-cols-1 min-h-screen lg:grid-cols-2  lg:gap-[10%]'
+				className='bg-primary-grey grid grid-cols-1 min-h-screen lg:grid-cols-2 lg:gap-[10%]'
 			>
 				<motion.aside
 					initial={{ x: '-100%' }}
@@ -93,19 +94,19 @@ function SigninPage() {
 						exit={{ y: 80, opacity: 0 }}
 						transition={{ duration: 0.8, delay: 3 }}
 					>
-						Welcome Back
+						Welcome Back!
 					</motion.h1>
 					<div className='w-full'>
-						<label htmlFor='email' className='font-medium text-gray-600'>
+						<Label htmlFor='email' className='font-medium text-gray-600'>
 							Email
-						</label>
+						</Label>
 						<div className='relative w-[80%] max-w-[500px]'>
 							<Image
 								src={'/svg/personIcon.svg'}
-								height={30}
-								width={30}
+								height={24}
+								width={24}
 								alt='person icon'
-								className='absolute bottom-4  left-3'
+								className='absolute bottom-4 left-3 '
 							/>
 							<input
 								type='text'
@@ -125,8 +126,8 @@ function SigninPage() {
 						<div className='relative w-[80%] max-w-[500px]'>
 							<Image
 								src={'/svg/lockIcon.svg'}
-								height={30}
-								width={30}
+								height={24}
+								width={24}
 								alt='person icon'
 								className='absolute bottom-4  left-3'
 							/>
@@ -179,9 +180,9 @@ function SigninPage() {
 					</div>
 					<GoogleAuth pathname='in' />
 					<p className='text-gray-600'>
-						{"Don't"} have an Account{' '}
+						{"Don't"} have an Account?{' '}
 						<Link href='/signup' className='text-primary-purple font-semibold'>
-							Sign Up
+							Sign Up here
 						</Link>
 					</p>
 				</motion.form>

@@ -62,7 +62,7 @@ const CustomersList = () => {
 
 	const columns: ColumnsType<Customer> = [
 		{
-			title: 'ID',
+			title: 'Customer ID',
 			dataIndex: 'id',
 			width: 100,
 			className: 'font-semibold text-xs',
@@ -97,6 +97,24 @@ const CustomersList = () => {
 			title: 'Phone Number',
 			dataIndex: 'phone',
 			width: 120,
+			className: 'font-semibold',
+		},
+		{
+			title: 'Birth Date',
+			dataIndex: 'birthDate',
+			width: 120,
+			className: 'font-semibold',
+		},
+		{
+			title: 'Picture ID',
+			dataIndex: 'driversLicense',
+			width: 120,
+			className: 'font-semibold capitalize',
+		},
+		{
+			title: 'SSN',
+			dataIndex: 'ssn',
+			width: 140,
 			className: 'font-semibold',
 		},
 		{

@@ -2,11 +2,11 @@
 	"testimonials": [
 		{
 			"quote": "I can't express how satisfied I am with Hippo Docs' services. As a small business owner, dealing with legal paperwork has always been a daunting task. But thanks to Hippo Docs, it's become a breeze. Their team is not only professional but also incredibly efficient. They helped me prepare and record all the necessary legal documents for my business expansion, and everything was done accurately and on time. I highly recommend Hippo Docs to anyone in need of legal prepping and recording services. They are a game-changer!",
-			"author": "Thai Ngo"
+			"author": "Jene Brown"
 		},
 		{
-			"quote": "Hippo Docs is simply exceptional. I had been procrastinating on updating my will and other legal documents for years, but finally decided to take action. From the moment I contacted them, I was impressed by their responsiveness and commitment to helping me. The team at Hippo Docs walked me through the entire process, patiently answering all my questions and concerns. They provided me with expert guidance, and the final documents were meticulously prepared. It's a great relief knowing that my family's future is secure, thanks to Hippo Docs. I wholeheartedly endorse their services to anyone in need of legal prepping and recording.",
-			"author": "Hiep Tran"
+			"quote": "Hippo Docs is simply exceptional. I had been procrastinating on updating my will and other legal documents for years, but finally decided to take action. From the moment I contacted them, I was impressed by their responsiveness and commitment to helping me. The team at Hippo Docs walked me through the entire process, patiently answering all my questions and concerns. They provided me with expert guidance, and the final documents were meticulously prepared. It's a great relief knowing that my family's future is secure, thanks to Hippo Docs. ",
+			"author": "Jenni Tran"
 		},
 		{
 			"quote": "Hippo Docs has been a lifesaver for me. When I needed to draft and record some complex legal agreements for a real estate transaction, I was overwhelmed. That's when I reached out to Hippo Docs, and I'm so glad I did. Their team of experts guided me through the entire process, ensuring that every document was prepared correctly and filed without any hiccups. Their attention to detail and dedication to customer satisfaction are commendable. Hippo Docs is now my go-to choice for all legal prepping and recording needs.",
@@ -18,6 +18,10 @@
 		}
 	],
 	"services": [
+		{
+			"heading": "Expert Guidance",
+			"paragraph": "Our platform is backed by legal experts, ensuring that every document you prepare is accurate and compliant with the latest laws and regulations."
+		},
 		{
 			"heading": "Settle your estate",
 			"paragraph": "Protect your estate and settle your assets with ease. Our platform connects you with professionals, ensuring a smooth and profitable transaction."

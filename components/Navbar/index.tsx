@@ -14,7 +14,7 @@ function NavBar() {
 		return false
 	}
 	return (
-		<nav className='fixed bg-neutral-800 h-14 z-[901] w-screen bottom-0 md:min-h-screen  md:w-[200px] transition-all duration-300'>
+		<nav className='fixed bg-neutral-800 h-14 z-[901] w-screen bottom-0 md:min-h-screen  md:w-[220px] transition-all duration-300'>
 			<div className='h-14 w-full md:flex gap-2 items-center rounded justify-center hidden'>
 				<span>
 					<LiaHippoSolid size={24} className='text-white' />
@@ -23,11 +23,11 @@ function NavBar() {
 			</div>
 
 			<Separator />
-			<div className='md:flex w-full flex-col my-6 px-2 hidden'>
+			<div className='md:flex w-full flex-col my-6 px-2 cursor-pointer hidden'>
 				<UserButton />
 			</div>
 
-			<ul className='flex flex-row md:flex-col h-14 items-center md:justify-start md:my-16 justify-evenly md:space-y-6 w-full'>
+			<ul className='flex flex-row md:flex-col h-14 items-center md:justify-start md:my-16 justify-evenly md:space-y-8 w-full'>
 				<li className=''>
 					<Link
 						href='/dashboard'
@@ -45,12 +45,12 @@ function NavBar() {
 						<span>Dashboard</span>
 					</Link>
 				</li>
-				<li className='  '>
+				<li className=''>
 					<Link
 						href='/create-customer'
 						className={`navbarLink ${
 							pathMatchRoute('/create-customer')
-								? 'text-violet-300 text-base font-medium'
+								? 'text-violet-300 font-semibold'
 								: 'text-gray-500 font-thin'
 						}`}
 					>
@@ -58,7 +58,7 @@ function NavBar() {
 							className='hover:scale-125 focus:text-violet-400 transition-all ease-out duration-300'
 							size={24}
 						/>
-						<span>Customers</span>
+						<span className='w-full'>Add Customer</span>
 					</Link>
 				</li>
 

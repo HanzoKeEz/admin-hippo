@@ -95,7 +95,7 @@
 	}
 
 	.overviewCard {
-		@apply justify-evenly flex text-center text-neutral-300 items-center rounded-lg;
+		@apply flex text-neutral-300 items-center rounded-lg;
 	}
 }
 

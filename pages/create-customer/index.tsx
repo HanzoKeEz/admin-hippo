@@ -17,9 +17,10 @@ import { useRouter } from 'next/router'
 import Spinner from '@/components/Spinner'
 import AuthLayout from '@/components/AuthLayout'
 import { Form } from 'antd'
-import { Input } from '@/components/ui/input'
+import { Input, PatternInput } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import CreatableInput from '@/components/ui/creatable-input'
 
 type formData = {
 	firstName: string
@@ -181,7 +182,9 @@ function CreateCustomerPage(): JSX.Element {
 						<Label htmlFor='phone' className='font-thin mb-3 block'>
 							Phone
 						</Label>
-						<Input
+						<PatternInput
+							format='1 + (###) ###-####'
+							placeholder='(###) ###-####'
 							type='text'
 							id='phone'
 							name='phone'
@@ -212,8 +215,10 @@ function CreateCustomerPage(): JSX.Element {
 						<Label htmlFor='birthDate' className='font-thin mb-3 block'>
 							Date of Birth
 						</Label>
-						<Input
-							type='date'
+						<PatternInput
+							format='##/##/####'
+							placeholder='MM/DD/YYYY'
+							type='text'
 							id='birthDate'
 							name='birthDate'
 							onChange={onMutate}
@@ -240,15 +245,18 @@ function CreateCustomerPage(): JSX.Element {
 						<Label htmlFor='ssn' className='font-thin mb-3 block'>
 							Social Security Number
 						</Label>
-						<Input
+						<PatternInput
+							format='###-##-####'
+							placeholder='###-##-####'
 							type='text'
-							className='input-box mb-3 block'
 							id='ssn'
 							name='ssn'
 							onChange={onMutate}
 							value={formData.ssn}
 							minLength={1}
 							maxLength={50}
+							className='input-box min-w-[340px]'
+							required
 						/>
 						<Label htmlFor='location' className='font-thin mb-3 block'>
 							Street Address
@@ -303,7 +311,8 @@ function CreateCustomerPage(): JSX.Element {
 						<Label htmlFor='zip' className='font-thin mb-3 block'>
 							ZipCode
 						</Label>
-						<Input
+						<PatternInput
+							format='#####'
 							type='text'
 							value={formData.zip}
 							id={'zip'}
@@ -315,6 +324,7 @@ function CreateCustomerPage(): JSX.Element {
 							required
 						/>
 					</div>
+
 					<div className='pt-6'>
 						<Button
 							type={'submit'}
