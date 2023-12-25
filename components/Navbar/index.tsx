@@ -14,7 +14,7 @@ function NavBar() {
 		return false
 	}
 	return (
-		<nav className='fixed bg-neutral-800 h-14 z-[901] w-screen bottom-0 md:min-h-screen  md:w-[220px] transition-all duration-300'>
+		<nav className='fixed bg-neutral-100 md:bg-neutral-800 h-20 rounded-t-xl z-[901] w-screen bottom-0 md:min-h-screen  md:w-[220px] transition-all duration-300'>
 			<div className='h-14 w-full md:flex gap-2 items-center rounded justify-center hidden'>
 				<span>
 					<LiaHippoSolid size={24} className='text-white' />
@@ -27,13 +27,13 @@ function NavBar() {
 				<UserButton />
 			</div>
 
-			<ul className='flex flex-row md:flex-col h-14 items-center md:justify-start md:my-16 justify-evenly md:space-y-8 w-full'>
+			<ul className='flex flex-row md:flex-col h-20 items-center md:justify-start md:my-16 justify-evenly md:space-y-8 w-full'>
 				<li className=''>
 					<Link
 						href='/dashboard'
 						className={`navbarLink ${
 							pathMatchRoute('/dashboard')
-								? 'text-violet-300'
+								? 'text-violet-400 font-semibold underline'
 								: 'text-gray-500 font-thin'
 						}`}
 					>
@@ -50,7 +50,7 @@ function NavBar() {
 						href='/create-customer'
 						className={`navbarLink ${
 							pathMatchRoute('/create-customer')
-								? 'text-violet-300 font-semibold'
+								? 'text-violet-400 font-semibold underline'
 								: 'text-gray-500 font-thin'
 						}`}
 					>
@@ -67,7 +67,7 @@ function NavBar() {
 						href='/profile-customer'
 						className={`navbarLink ${
 							pathMatchRoute('/profile-customer')
-								? 'text-violet-300 text-base font-medium'
+								? 'text-violet-400 font-semibold underline'
 								: 'text-gray-500 font-thin'
 						}`}
 					>
