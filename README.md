@@ -1,6 +1,6 @@
-# House MarketPlace 
+# Admin Hippo
 
-A Web Application to purchase houses all over the world.
+A Web Application that intakes customer form data and display data on the dashboard with tables. 
 
 ![](https://img.shields.io/github/issues/nathan-somto/house-marketplace?style=for-the-badge)
 ![](https://img.shields.io/badge/Maintained-Yes-lemon?style=for-the-badge)
